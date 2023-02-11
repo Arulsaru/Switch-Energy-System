@@ -1,0 +1,15 @@
+<mat-toolbar class="toolbar" color="primary">
+    <p class="h3">Switch Energy System</p>
+    <span class="example-spacer"></span>
+    <button mat-mini-fab class="icon-buttons" color="none">
+      <mat-icon color="none">favorite</mat-icon>
+    </button>
+    <button mat-raised-button [matMenuTriggerFor]="userMenu" color="none" id="account-menu-button" class="icon-buttons">
+      <mat-icon color="none">person</mat-icon>
+      &nbsp; &nbsp;{{userName}}
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-menu #userMenu="matMenu" class="mat-menu mt-3" xPosition="before">
+    <button mat-menu-item>Logout</button>
+  </mat-menu>

@@ -1,0 +1,19 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.toolbar {
+    height: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: white;
+    color: black;
+}
+
+.icon-buttons {
+    margin-left: 20px;
+}
+
+#account-menu-button {
+    border-radius: 15px;
+}
