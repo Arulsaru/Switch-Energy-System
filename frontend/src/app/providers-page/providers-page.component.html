@@ -1,0 +1,23 @@
+<div class="center">
+    <table class="table mt-3">
+        <thead class="table-thead">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Provider Name</th>
+                <th scope="col">Rate / watt</th>
+                <th scope="col">Users list</th>
+                <th scope="col">Enable / Disable</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let provider of providers; index as idx">
+                <th scope="row">{{idx + 1}}</th>
+                <td>{{provider.providerName}}</td>
+                <td>{{provider.ratePerWatt}}</td>
+                <td><button mat-raised-button (click)="showUsersList(provider)">...</button></td>
+                <td><button mat-raised-button [color]="provider.enabled ? 'warn': 'success'">{{provider.enabled ?
+                        'Disable': 'Enable'}}</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
