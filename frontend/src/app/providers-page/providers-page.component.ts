@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { providerType } from '../interface/providerType';
-import { SmartMeterService } from '../service/smart-meter.service';
+import { UserService } from '../service/user.service';
 import swal from 'sweetalert';
 
 @Component({
@@ -11,7 +11,7 @@ import swal from 'sweetalert';
 export class ProvidersPageComponent implements OnInit {
   providers: providerType[] = [];
 
-  constructor(private service: SmartMeterService) {}
+  constructor(private service: UserService) {}
 
   ngOnInit() {
     this.service.getAllProviders().subscribe((res: providerType[]) => {
