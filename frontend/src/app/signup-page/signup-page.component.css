@@ -1,0 +1,44 @@
+.main-container,
+.password-container {
+    display: flex;
+}
+
+.row-container {
+    height: 100vh;
+    padding-top: 50px;
+    margin-left: 100px;
+}
+
+.right-container {
+    width: 500px;
+}
+
+#signup-button {
+    margin-top: 20px;
+    width: 300px;
+    background-color: black;
+    border-color: white;
+}
+
+.form-group,
+.form-check {
+    margin-top: 20px;
+}
+
+.form-control {
+    width: 300px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: black;
+    /* border-top: none !important; */
+    box-shadow: none;
+}
+
+#show-password-icon-one, #show-password-icon-two {
+    position: relative;
+    top: 57px;
+    right: 35px;
+    cursor: pointer;
+}
