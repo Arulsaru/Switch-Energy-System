@@ -12,10 +12,15 @@ public class Provider {
     private double ratePerWatt;
     private List<String> usersList; // list of users using that provider
     private boolean isEnabled;
+
     public Provider(String providerName, double ratePerWatt) {
         this.providerName = providerName;
         this.ratePerWatt = ratePerWatt;
         this.usersList = new ArrayList<>();
         this.isEnabled = true;
+        this.usersList.add("asdads");
+        this.usersList.add("asdads");
+        this.usersList.add("asdads");
+        this.usersList.add("asdads");
     }
 }

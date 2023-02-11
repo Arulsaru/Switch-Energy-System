@@ -9,6 +9,7 @@ import switch_energy_system.repository.SmartMeterRepository;
 public class SmartMeterService {
     @Autowired
     SmartMeterRepository smartMeterRepository;
+
     public void createSmartMeter(SmartMeter smartMeter) {
         smartMeterRepository.createSmartMeter(smartMeter);
     }

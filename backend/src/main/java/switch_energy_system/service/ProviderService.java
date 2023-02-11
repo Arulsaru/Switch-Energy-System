@@ -9,14 +9,8 @@ import switch_energy_system.repository.ProviderRepository;
 public class ProviderService {
     @Autowired
     ProviderRepository providerRepository;
+
     public void createProvider(Provider provider) {
         providerRepository.createProvider(provider);
-    }
-    public void enableProvider(String providerName) {
-        providerRepository.enableOrDisableProvider(providerName, true);
-    }
-    public void disableProvider(String providerName) {
-        // should switch provider for all the users using this provider
-        providerRepository.enableOrDisableProvider(providerName, false);
     }
 }
