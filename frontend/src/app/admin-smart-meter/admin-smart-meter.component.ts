@@ -13,6 +13,10 @@ export class AdminSmartMeterComponent implements OnInit {
   constructor(private service: SmartMeterService) {}
 
   ngOnInit() {
+    this.getSmartMeterList();
+  }
+
+  getSmartMeterList():void{
     this.service
       .getPendingSmartMeters()
       .subscribe((response: smartMeterType[]) => {
@@ -21,10 +25,14 @@ export class AdminSmartMeterComponent implements OnInit {
   }
 
   approveSmartMeter(smartMeter: smartMeterType): void {
-    this.service.approveOrRejectSmartMeter(smartMeter.smartMeterId, "APPROVED", smartMeter.providerName).subscribe();
+    this.service.approveOrRejectSmartMeter(smartMeter.smartMeterId, "APPROVED", smartMeter.providerName).subscribe((res) => {
+      this.getSmartMeterList();
+    });
   }
   
   rejectSmartMeter(smartMeter: smartMeterType): void {
-    this.service.approveOrRejectSmartMeter(smartMeter.smartMeterId, "REJECTED", smartMeter.providerName).subscribe();
+    this.service.approveOrRejectSmartMeter(smartMeter.smartMeterId, "REJECTED", smartMeter.providerName).subscribe((res) => {
+      this.getSmartMeterList();
+    });
   }
 }
