@@ -3,28 +3,28 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { providerType } from '../interface/provider';
 import { createProviderType } from '../interface/create-provider';
+import { baseURL } from '../constant/constant-variables';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class ProviderService {
-    baseURL: String = 'http://localhost:8080/';
     constructor(private http: HttpClient) {}
 
     getAllProviders(): Observable<providerType[]> {
-        return this.http.get<providerType[]>(`${this.baseURL}provider/get-all-providers`);
+        return this.http.get<providerType[]>(`${baseURL}provider/get-all-providers`);
     }
 
     createProviders(newProvider: createProviderType): Observable<Object> {
-        return this.http.post(`${this.baseURL}provider`, newProvider);
+        return this.http.post(`${baseURL}provider`, newProvider);
     }
 
     enableProvider(providerName: String): Observable<String> {
-        return this.http.put<String>(`${this.baseURL}provider/enable/${providerName}`, null);
+        return this.http.put<String>(`${baseURL}provider/enable/${providerName}`, null);
     }
 
     disableProvider(providerName: String): Observable<String> {
-        return this.http.put<String>(`${this.baseURL}provider/disable/${providerName}`, null);
+        return this.http.put<String>(`${baseURL}provider/disable/${providerName}`, null);
     }
 }
