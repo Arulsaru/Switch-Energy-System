@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { smartMeterType } from '../interface/smart-meter-type';
+import { smartMeterType } from '../interface/smart-meter';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class SmartMeterService {
     getPendingSmartMeters(): Observable<smartMeterType[]> {
         return this.http.get<smartMeterType[]>(`${this.baseURL}smartmeter`);
     }
-    approveOrRejectSmartMeter(smartMeterId: String, smartMeterStatus: String) {
-        return this.http.put(`${this.baseURL}smartmeter/${smartMeterId}/approve_or_reject/${smartMeterStatus}`, null);
+    approveOrRejectSmartMeter(smartMeterId: String, smartMeterStatus: String, providerName: String): Observable<Object> {
+        return this.http.put(`${this.baseURL}smartmeter/${smartMeterId}/approve-or-reject/${smartMeterStatus}/${providerName}`, null);
     }
 }

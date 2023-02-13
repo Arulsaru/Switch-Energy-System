@@ -5,6 +5,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 const materialComponents = [
   MatIconModule,
@@ -12,7 +15,10 @@ const materialComponents = [
   MatButtonModule,
   MatInputModule,
   ReactiveFormsModule,
-  MatMenuModule
+  MatMenuModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  FormsModule
 ];
 
 @NgModule({

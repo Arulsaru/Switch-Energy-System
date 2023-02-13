@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { ProvidersPageComponent } from '../providers-page/providers-page.component';
-import { createProviderType } from '../interface/createProvider';
+import { createProviderType } from '../interface/create-provider';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({

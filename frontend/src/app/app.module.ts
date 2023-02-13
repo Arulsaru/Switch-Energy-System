@@ -12,6 +12,9 @@ import { DescriptionComponent } from './description/description.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ProvidersPageComponent } from './providers-page/providers-page.component';
+import { AdminSmartMeterComponent } from './admin-smart-meter/admin-smart-meter.component';
+import { UserSmartMeterComponent } from './user-smart-meter/user-smart-meter.component';
+import { CreateProviderDialogComponent } from './create-provider-dialog/create-provider-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { ProvidersPageComponent } from './providers-page/providers-page.componen
     DescriptionComponent,
     MainPageComponent,
     ToolbarComponent,
-    ProvidersPageComponent
+    ProvidersPageComponent,
+    AdminSmartMeterComponent,
+    UserSmartMeterComponent,
+    CreateProviderDialogComponent
   ],
   imports: [
     BrowserModule,

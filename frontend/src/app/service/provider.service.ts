@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { providerType } from '../interface/providerType';
+import { providerType } from '../interface/provider';
+import { createProviderType } from '../interface/create-provider';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +13,11 @@ export class ProviderService {
     constructor(private http: HttpClient) {}
 
     getAllProviders(): Observable<providerType[]> {
-        return this.http.get<providerType[]>(`${this.baseURL}provider/get_all_providers`);
+        return this.http.get<providerType[]>(`${this.baseURL}provider/get-all-providers`);
+    }
+
+    createProviders(newProvider: createProviderType): Observable<Object> {
+        return this.http.post(`${this.baseURL}provider`, newProvider);
     }
 
     enableProvider(providerName: String): Observable<String> {
