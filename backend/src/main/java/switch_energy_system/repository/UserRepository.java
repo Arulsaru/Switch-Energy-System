@@ -19,4 +19,8 @@ public class UserRepository implements QueryImpl {
     public void createUser(User user) {
         mongoTemplate.save(user);
     }
+
+    public User getUserByName(String userName) {
+        return mongoTemplate.findOne(getQueryForUserName(userName), User.class);
+    }
 }

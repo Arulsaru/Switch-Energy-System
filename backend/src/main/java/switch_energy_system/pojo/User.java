@@ -1,13 +1,12 @@
 package switch_energy_system.pojo;
 
+import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Document(collection = "user")
 public class User {
     private String userName;
@@ -15,4 +14,11 @@ public class User {
     private long phoneNumber;
     private String email;
     private String role;
+    public User(String userName, String password, long phoneNumber, String email) {
+        this.userName = userName;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.role = "USER";
+    }
 }

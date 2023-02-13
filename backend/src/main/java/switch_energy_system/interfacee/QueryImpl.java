@@ -13,4 +13,7 @@ public interface QueryImpl {
         return Query.query(Criteria.where("smartMeterId").is(smartMeterId));
     }
 
+    public default Query getQueryForUserName(String userName) {
+        return Query.query(Criteria.where("userName").is(userName));
+    }
 }

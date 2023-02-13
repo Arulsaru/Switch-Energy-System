@@ -5,18 +5,18 @@ import org.springframework.stereotype.Service;
 import switch_energy_system.pojo.User;
 import switch_energy_system.repository.UserRepository;
 
-import java.util.List;
-
 @Service
 public class UserService {
+
     @Autowired
     UserRepository userRepository;
 
     @Autowired
-    SmartMeterService smartMeterService;
+    ValidatorService userValidator;
 
-    public void createUser(User user) {
-        user.setPassword(user.getPassword());
+    public void createUser(User user) throws Exception {
+        userValidator.preValidate(user);
+        user.setPassword(user.getPassword()); // password encode pannanu
         userRepository.createUser(user);
     }
 }

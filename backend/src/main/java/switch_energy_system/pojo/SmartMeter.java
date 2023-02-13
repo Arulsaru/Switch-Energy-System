@@ -26,7 +26,7 @@ public class SmartMeter {
 
     public SmartMeter(String smartMeterId, String userName) {
         this.userName = userName;
-        this.providerName = "The Blue Eco"; // default provider
+        this.providerName = "New"; // default provider
         this.readings = "0";
         this.date = "0";
         this.smartMeterStatus = "PENDING";
