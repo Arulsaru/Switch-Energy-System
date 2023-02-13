@@ -5,16 +5,33 @@ import org.springframework.web.bind.annotation.*;
 import switch_energy_system.pojo.Provider;
 import switch_energy_system.service.ProviderService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/provider")
+@CrossOrigin("*")
 public class ProviderController {
 
     @Autowired
     ProviderService providerService;
 
     @PostMapping
-    public String createProvider(@RequestBody Provider provider) { // only admin could create provider
+    public void createProvider(@RequestBody Provider provider) { // only admin could create provider
         providerService.createProvider(provider);
-        return "Provider created";
+    }
+
+    @PutMapping("/enable/{providerName}")  // admin
+    public void enableProvider(@PathVariable String providerName) {
+        providerService.enableProvider(providerName);
+    }
+
+    @PutMapping("/disable/{providerName}") // admin
+    public void disableProvider(@PathVariable String providerName) {
+        providerService.disableProvider(providerName);
+    }
+
+    @GetMapping("/get-all-providers") // admin
+    public List<Provider> getAllProviders() {
+        return providerService.getAllProviders();
     }
 }

@@ -10,43 +10,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("user")
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired
     UserService userService;
 
     @PostMapping  // user
-    public String createUser(@RequestBody User user) {
+    public void createUser(@RequestBody User user) {
         userService.createUser(user);
-        return "User created";
-    }
-
-    @PutMapping("/enable/{providerName}")  // admin
-    public String enableProvider(@PathVariable String providerName) {
-        userService.enableProvider(providerName);
-        return "Provider enabled";
-    }
-
-    @PutMapping("/disable/{providerName}") // admin
-    public String disableProvider(@PathVariable String providerName) {
-        userService.disableProvider(providerName);
-        return "Provider disabled";
-    }
-
-    @GetMapping("/get_all_providers") // admin
-    public List<Provider> getAllProviders() {
-        return userService.getAllproviders();
-    }
-
-    @PutMapping("/{smartMeterId}/switch_providers/{providerName}") // admin
-    public String switchProviderForSingleSmartMeter(@PathVariable String smartMeterId, @PathVariable String providerName) {
-        userService.switchProviderForSingleSmartMeter(smartMeterId, providerName);
-        return "smart meter switched";
-    }
-
-    @PutMapping("{smartMeterId}/approve/{status}")
-    public String approveOrRejectSmartMeter(@PathVariable String smartMeterId, @PathVariable String status) {
-        userService.approveOrRejectSmartMeter(smartMeterId, status);
-        return "smart meter approved";
     }
 }

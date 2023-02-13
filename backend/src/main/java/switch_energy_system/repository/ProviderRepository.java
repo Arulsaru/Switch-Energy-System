@@ -22,4 +22,22 @@ public class ProviderRepository implements QueryImpl {
     public Provider getProviderByName(String providerName) {
         return mongoTemplate.findOne(getQueryForProviderName(providerName), Provider.class);
     }
+
+    public void enableOrDisableProvider(String providerName, boolean toEnable) {
+        mongoTemplate.findAndModify(getQueryForProviderName(providerName), new Update().set("isEnabled", toEnable), Provider.class);
+    }
+
+    public boolean isProviderEnabled(String providerName) {
+        return mongoTemplate.findOne(getQueryForProviderName(providerName), Provider.class).isEnabled();
+    }
+
+    public List<Provider> getAllProviders() {
+        return mongoTemplate.findAll(Provider.class);
+    }
+
+    public void addSmartMeterToTheProviderList(String smartMeterId, String providerName) {
+        mongoTemplate.findAndModify(getQueryForProviderName(providerName),
+                new Update().push("smartMetersList", smartMeterId),
+                Provider.class);
+    }
 }

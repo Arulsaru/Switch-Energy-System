@@ -10,17 +10,13 @@ import java.util.List;
 public class Provider {
     private String providerName;
     private double ratePerWatt;
-    private List<String> usersList; // list of users using that provider
+    private List<String> smartMetersList; // list of smartMeters using that provider
     private boolean isEnabled;
 
     public Provider(String providerName, double ratePerWatt) {
         this.providerName = providerName;
         this.ratePerWatt = ratePerWatt;
-        this.usersList = new ArrayList<>();
+        this.smartMetersList = new ArrayList<>();
         this.isEnabled = true;
-        this.usersList.add("asdads");
-        this.usersList.add("asdads");
-        this.usersList.add("asdads");
-        this.usersList.add("asdads");
     }
 }
