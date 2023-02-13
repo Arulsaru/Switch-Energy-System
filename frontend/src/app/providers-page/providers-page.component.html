@@ -1,10 +1,13 @@
+<app-toolbar></app-toolbar>
+<p class="h3 heading">PROVIDERS</p>
 <div class="center">
-    <table class="table mt-3">
+    <table class="table">
         <thead class="table-thead">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Provider Name</th>
                 <th scope="col">Rate / watt</th>
+                <th scope="col">Is Enabled</th>
                 <th scope="col">Users list</th>
                 <th scope="col">Enable / Disable</th>
             </tr>
@@ -14,8 +17,9 @@
                 <th scope="row">{{idx + 1}}</th>
                 <td>{{provider.providerName}}</td>
                 <td>{{provider.ratePerWatt}}</td>
+                <td>{{provider.enabled ? 'Enabled': 'Disabled'}}</td>
                 <td><button mat-raised-button (click)="showUsersList(provider)">...</button></td>
-                <td><button mat-raised-button [color]="provider.enabled ? 'warn': 'success'">{{provider.enabled ?
+                <td><button mat-raised-button [color]="provider.enabled ? 'warn': 'success'" (click)="enableOrDisableProvider(provider)">{{provider.enabled ?
                         'Disable': 'Enable'}}</button></td>
             </tr>
         </tbody>
