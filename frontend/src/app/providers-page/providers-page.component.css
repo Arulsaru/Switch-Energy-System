@@ -19,3 +19,9 @@
     margin-bottom: 50px;
     text-align: center;
 }
+
+#create-provider-button {
+    position: relative;
+    left: 300px;
+    top: 30px;
+}

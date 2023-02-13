@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { createProviderType } from '../interface/createProvider';
 import { providerType } from '../interface/providerType';
 import { ProviderService } from '../service/provider.service';
 import Swal from 'sweetalert2';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateProviderDialogComponent } from '../create-provider-dialog/create-provider-dialog.component';
 
 @Component({
   selector: 'app-providers-page',
@@ -11,7 +14,14 @@ import Swal from 'sweetalert2';
 export class ProvidersPageComponent implements OnInit {
   providers: providerType[] = [];
 
-  constructor(private service: ProviderService) {}
+  newProviderName: String = '';
+  newProviderRatePerWatt: Number = 0;
+  newProvider: createProviderType = {
+    providerName: '',
+    ratePerWatt: 0
+  };
+
+  constructor(private service: ProviderService, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.service.getAllProviders().subscribe((res: providerType[]) => {
@@ -19,17 +29,43 @@ export class ProvidersPageComponent implements OnInit {
     });
   }
 
+  createProvider(): void {
+    const dialogRef = this.dialog.open(CreateProviderDialogComponent, {
+      data: { 
+        newProvider: this.newProvider
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.newProvider = result;
+      console.log(this.newProvider);
+      this.service.createProviders(this.newProvider).subscribe();
+    });
+  }
+
   showUsersList(provider: providerType): void {
+    let message: String = '';
+    if (provider.smartMetersList.length == 0) {
+      message = 'No smartmeter is using this provider';
+    } else if (provider.smartMetersList.length < 5) {
+      message = provider.smartMetersList.toString();
+    } else {
+      message = `${provider.smartMetersList
+        .splice(0, 5)
+        .toString()} and so on..`;
+    }
+
     Swal.fire({
       title: provider.providerName,
-      text: provider.usersList.toString(),
+      text: message.toString(),
       // footer: '<a href="">Why do I have this issue?</a>'
-    })
+    });
   }
 
   enableOrDisableProvider(provider: providerType): void {
-    if (provider.enabled) { // disable Provider
-      
+    if (provider.enabled) {
+      // disable Provider
+
       Swal.fire({
         title: 'Are you sure?',
         text: `You want to disable ${provider.providerName} provider.. 
@@ -38,7 +74,7 @@ export class ProvidersPageComponent implements OnInit {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Disable it!'
+        confirmButtonText: 'Yes, Disable it!',
       }).then((result) => {
         if (result.isConfirmed) {
           this.service.disableProvider(provider.providerName).subscribe();
@@ -47,12 +83,12 @@ export class ProvidersPageComponent implements OnInit {
             `Provider ${provider.providerName} is disabled`,
             'success'
           ).then((result) => {
-            if(result.isConfirmed) {
+            if (result.isConfirmed) {
               window.location.reload();
             }
-          })
+          });
         }
-      })
+      });
     } else {
       Swal.fire({
         title: 'Are you sure?',
@@ -61,7 +97,7 @@ export class ProvidersPageComponent implements OnInit {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Enable it!'
+        confirmButtonText: 'Yes, Enable it!',
       }).then((result) => {
         if (result.isConfirmed) {
           this.service.enableProvider(provider.providerName).subscribe();
@@ -70,12 +106,12 @@ export class ProvidersPageComponent implements OnInit {
             `provider ${provider.providerName} is enabled`,
             'success'
           ).then((result) => {
-            if(result.isConfirmed) {
+            if (result.isConfirmed) {
               window.location.reload();
             }
-          })
+          });
         }
-      })
+      });
     }
   }
 }

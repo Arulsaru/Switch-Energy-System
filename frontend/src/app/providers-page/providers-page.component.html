@@ -1,5 +1,8 @@
 <app-toolbar></app-toolbar>
-<p class="h3 heading">PROVIDERS</p>
+<div class="heading">
+    <button id="create-provider-button" class="btn btn-dark" (click)="createProvider()">Create New Provider</button>
+    <p class="h4">PROVIDERS</p>
+</div>
 <div class="center">
     <table class="table">
         <thead class="table-thead">
@@ -8,7 +11,7 @@
                 <th scope="col">Provider Name</th>
                 <th scope="col">Rate / watt</th>
                 <th scope="col">Is Enabled</th>
-                <th scope="col">Users list</th>
+                <th scope="col">Smart Meter list</th>
                 <th scope="col">Enable / Disable</th>
             </tr>
         </thead>
