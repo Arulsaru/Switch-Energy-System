@@ -19,4 +19,8 @@ public class UserService {
         user.setPassword(user.getPassword()); // password encode pannanu
         userRepository.createUser(user);
     }
+
+    public User getUserByName(String userName) {
+        return userRepository.getUserByName(userName);
+    }
 }

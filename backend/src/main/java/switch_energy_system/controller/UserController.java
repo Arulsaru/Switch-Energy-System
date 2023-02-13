@@ -20,4 +20,9 @@ public class UserController {
     public void createUser(@RequestBody User user) throws Exception {
         userService.createUser(user);
     }
+
+    @GetMapping
+    public User getUserByUserName(String userName) {
+        return userService.getUserByName(userName);
+    }
 }
