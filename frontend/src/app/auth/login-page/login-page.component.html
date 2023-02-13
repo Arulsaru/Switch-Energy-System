@@ -1,0 +1,27 @@
+<div class="main-container">
+    <div class="row-container">
+        <app-description></app-description>
+    </div>
+    <div class="row-container ml-1 right-container">
+        <h2 id="heading">Login to your Account</h2> <br>
+        <div class="form-group">
+            <label class="mb-2">&emsp; Username</label>
+            <input type="email" class="form-control" placeholder="Enter username">
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+        <div class="form-group">
+            <label class="mb-2">&emsp; Password</label>
+            <input type="password" matInput [type]="showPassword ? 'text':'Password'" class="form-control"
+                placeholder="Enter password">
+            <mat-icon id="show-password-icon" matSuffix
+                (click)="togglePasswordVisibility()">{{showPassword?'visibility_off':'visibility'}}
+            </mat-icon>
+            <a href="/#" id="forgot-password-link" class="link-dark small fw-bold">Forgot Password ?</a>
+        </div>
+        <button id="login-button" class="btn btn-primary">LOGIN</button>
+        <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/auth/signup"
+                class="link-danger">Register</a>
+        </p>
+    </div>
+</div>
+<button mat-mini-fab><mat-icon>home</mat-icon></button>

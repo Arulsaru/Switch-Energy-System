@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { MainPageComponent } from './main-page/main-page.component';
-import { SignupPageComponent } from './signup-page/signup-page.component';
-import { AdminSmartMeterComponent } from './admin-smart-meter/admin-smart-meter.component';
-import { ProvidersPageComponent } from './providers-page/providers-page.component';
+import { AuthComponent } from './auth/auth.component';
+import { AdminSmartMeterComponent } from './admin/admin-smart-meter/admin-smart-meter.component';
+import { ProvidersPageComponent } from './admin/providers-page/providers-page.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginPageComponent },
-  { path: 'signup', component: SignupPageComponent },
-  { path: 'main', component: MainPageComponent },
-  { path: 'smart-meter', component: AdminSmartMeterComponent },
-  { path: 'providers', component: ProvidersPageComponent }
+  {path: '', redirectTo: 'admin', pathMatch: 'full'},
+  {
+    path: 'auth',
+    component:AuthComponent,
+    loadChildren:() => import('./auth/auth.module').then(x => x.AuthModule)
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    loadChildren:() => import('./admin/admin.module').then(x => x.AdminModule)
+  }
 ];
 
 @NgModule({

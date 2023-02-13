@@ -1,0 +1,21 @@
+.mat-success {
+    background-color: green;
+    color: white;
+}
+
+.center {
+    margin-right: 200px;
+    margin-left: 200px;
+}
+
+.table {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    vertical-align: center;
+}
+
+.heading {
+    margin-bottom: 60px;
+    text-align: center;
+}

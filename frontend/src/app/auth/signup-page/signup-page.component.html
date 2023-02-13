@@ -1,0 +1,47 @@
+<div class="main-container">
+    <div class="row-container">
+        <app-description></app-description>
+    </div>
+    <div class="row-container right-container">
+        <h2 id="heading">Create an Account</h2>
+        <form [formGroup]="signUpForm">
+            <div class="form-group mt-4">
+                <label class="mb-2">Username</label>
+                <input type="email" class="form-control" formControlName="userName" placeholder="Enter username">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+            <div class="password-container">
+                <div class="form-group password-right-container">
+                    <label class="mb-2">Password</label>
+                    <input type="password" [type]="showPassword? 'text':'password'" class="form-control"
+                        formControlName="password" placeholder="Enter password">
+                </div>
+                <mat-icon id="show-password-icon-one" matSuffix
+                    (click)="togglePasswordVisibility()">{{showPassword?'visibility_off':'visibility'}}
+                </mat-icon>
+                <div style="margin-left: 30px" class="form-group">
+                    <label class="mb-2">Re-Enter Password</label>
+                    <input type="password" [type]="showPasswordForReEnterPasswordField? 'text':'password'"
+                        class="form-control" formControlName="reEnterPassword" placeholder="Re-Enter password">
+                </div>
+                <mat-icon id="show-password-icon-two" matSuffix
+                    (click)="togglePasswordVisibilityForReEnterPasswordField()">{{showPasswordForReEnterPasswordField?'visibility_off':'visibility'}}
+                </mat-icon>
+            </div>
+            <div class="form-group">
+                <label class="mb-2">Phone Number</label>
+                <input type="text" class="form-control" placeholder="Enter password" formControlName="phoneNumber">
+            </div>
+            <div class="form-group">
+                <label class="mb-2">Email</label>
+                <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
+            </div>
+        </form> <br>
+        <button id="signup-button" class="btn btn-primary" (click)="print()">SIGN UP</button>
+        <p class="small fw-bold mt-2 pt-1 mb-0">Already has account? <a href="/auth/login" class="link-success">Login..</a>
+        </p>
+    </div>
+</div>
+<div class="alert alert-danger" *ngIf="isUserNameAlreadyAvailable" role="alert">
+    This user name is already in user
+</div>
