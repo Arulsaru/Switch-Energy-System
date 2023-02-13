@@ -5,9 +5,10 @@
 .toolbar {
     height: auto;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 50px;
+    font-family: Spectral, serif;
     background-color: white;
-    color: black;
+    text-shadow: 3px 3px 3px #ababab;
 }
 
 .icon-buttons {

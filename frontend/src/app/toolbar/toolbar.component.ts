@@ -1,10 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.css']
+  styleUrls: ['./toolbar.component.css'],
 })
 export class ToolbarComponent {
-  userName: String = "Arulsaru"
+  userName: String = 'Arulsaru';
+  constructor(private router: Router) {}
+  
+  redirectToSmartMeterPage(): void {
+    this.router.navigate(['/smart-meter']);
+  }
+
+  redirectToProvidersPage(): void {
+    this.router.navigate(['/providers']);
+  }
 }
