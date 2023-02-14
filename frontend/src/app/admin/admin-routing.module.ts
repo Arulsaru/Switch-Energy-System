@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminSmartMeterComponent } from './admin-smart-meter/admin-smart-meter.component';
-import { CreateProviderDialogComponent } from './create-provider-dialog/create-provider-dialog.component';
 import { ProvidersPageComponent } from './providers-page/providers-page.component';
 
 const routes: Routes = [

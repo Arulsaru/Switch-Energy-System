@@ -23,7 +23,7 @@ import { AuthRoutingModule } from './auth-routing.module';
     MatIconModule,
     RouterModule,
     ReactiveFormsModule,
-    AuthRoutingModule
+    AuthRoutingModule,
   ]
 })
 export class AuthModule { }
