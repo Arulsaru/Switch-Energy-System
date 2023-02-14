@@ -12,9 +12,16 @@
     text-align: center;
 }
 
-#create-smart-meter-button {
+.create-smart-meter {
     position: relative;
-    left: 700px;
+    left: 110px;
+    top: 80px;
+}
+
+#create-smart-meter-text {
+    position: relative;
+    top: 30px;
+    right: 60px;
 }
 
 .main-container {
@@ -23,4 +30,5 @@
 
 .card {
     float: left;
+    height: 260px;
 }

@@ -1,7 +1,12 @@
 <app-toolbar></app-toolbar>
 <p class="h6 heading mb-4">LIST OF SMART METERS</p>
-<button mat-mini-fab color="dark" id="create-smart-meter-button" (click)="createSmartMeter()"><mat-icon>add</mat-icon></button>
 <div class="main-container">
+    <mat-card class="card">
+        <div class="create-smart-meter">
+            <button  mat-mini-fab (click)="createSmartMeter()" color="dark"><mat-icon>add</mat-icon></button> <br>
+            <p class="h6" id="create-smart-meter-text">CREATE SMART METER</p>
+        </div>
+    </mat-card>
     <mat-card class="card" *ngFor="let smartMeter of smartMeters">
         <mat-card-header>
             <!-- <mat-card-title>{{smartMeter.smartMeterId}}</mat-card-title> -->
