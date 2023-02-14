@@ -18,12 +18,16 @@ export class ProvidersPageComponent implements OnInit {
   newProviderRatePerWatt: Number = 0;
   newProvider: createProviderType = {
     providerName: '',
-    ratePerWatt: 0
+    ratePerWatt: 0,
   };
 
   constructor(private service: ProviderService, public dialog: MatDialog) {}
 
   ngOnInit() {
+    this.getAllProviders();
+  }
+
+  getAllProviders(): void {
     this.service.getAllProviders().subscribe((res: providerType[]) => {
       this.providers = res;
     });
@@ -31,19 +35,18 @@ export class ProvidersPageComponent implements OnInit {
 
   createProvider(): void {
     const dialogRef = this.dialog.open(CreateProviderDialogComponent, {
-      data: { 
-        newProvider: this.newProvider
+      data: {
+        newProvider: this.newProvider,
       },
     });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+    dialogRef.afterClosed().subscribe((result) => {
       this.newProvider = result;
-      console.log(this.newProvider);
       this.service.createProviders(this.newProvider).subscribe();
     });
   }
 
   showUsersList(provider: providerType): void {
+    this.getAllProviders();
     let message: String = '';
     if (provider.smartMetersList.length == 0) {
       message = 'No smartmeter is using this provider';

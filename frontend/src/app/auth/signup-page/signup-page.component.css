@@ -36,7 +36,8 @@
     box-shadow: none;
 }
 
-#show-password-icon-one, #show-password-icon-two {
+#show-password-icon-one,
+#show-password-icon-two {
     position: relative;
     top: 57px;
     right: 35px;
@@ -48,5 +49,5 @@
     position: absolute;
     top: 300px;
     left: 790px;
-    
+
 }
