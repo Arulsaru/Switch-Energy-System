@@ -5,8 +5,22 @@
 .card {
     width: 300px;
     margin-top: 50px;
+    margin-left: 30px;
 }
 
 #smart-meter-id {
     text-align: center;
+}
+
+#create-smart-meter-button {
+    position: relative;
+    left: 700px;
+}
+
+.main-container {
+    display: table;
+}
+
+.card {
+    float: left;
 }

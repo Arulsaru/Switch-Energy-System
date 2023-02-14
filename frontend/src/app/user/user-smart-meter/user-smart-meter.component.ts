@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { smartMeterType } from 'src/app/interface/smart-meter';
 import { SmartMeterService } from 'src/app/service/smart-meter.service';
 import { CreateSmartMeterDialogComponent } from '../create-smart-meter-dialog/create-smart-meter-dialog.component';
 
@@ -9,15 +10,19 @@ import { CreateSmartMeterDialogComponent } from '../create-smart-meter-dialog/cr
   styleUrls: ['./user-smart-meter.component.css'],
 })
 export class UserSmartMeterComponent {
+
+  smartMeters: smartMeterType[] = [];
+
   constructor(
     private smartMeterService: SmartMeterService,
     public dialog: MatDialog
   ) {}
 
   ngOnInit() {
-    // this.service.getUserByName("logged in username").subscribe((res) => {
-    //     console.log(res);
-    // })
+    this.smartMeterService.getSmartMeterByUserName("Arulmozhi").subscribe((res) => {
+      console.log(res);
+      this.smartMeters = res;
+    })
   }
 
   selectedProvider = '';
