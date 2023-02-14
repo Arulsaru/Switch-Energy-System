@@ -16,6 +16,10 @@ export class ProviderService {
         return this.http.get<providerType[]>(`${baseURL}provider/get-all-providers`);
     }
 
+    getAllEnabledProviders(): Observable<providerType[]> {
+        return this.http.get<providerType[]>(`${baseURL}provider/get-all-enabled-providers`);
+    }
+
     createProviders(newProvider: createProviderType): Observable<Object> {
         return this.http.post(`${baseURL}provider`, newProvider);
     }

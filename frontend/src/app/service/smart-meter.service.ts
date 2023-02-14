@@ -18,4 +18,12 @@ export class SmartMeterService {
     approveOrRejectSmartMeter(smartMeterId: String, smartMeterStatus: String, providerName: String): Observable<Object> {
         return this.http.put(`${baseURL}smartmeter/${smartMeterId}/approve-or-reject/${smartMeterStatus}/${providerName}`, null);
     }
+
+    createSmartMeter(providerName: String) {
+        const smartMeter = {
+            userName: 'Arulmozhi',
+            providerName: providerName
+        }
+        return this.http.post(`${baseURL}smartmeter`, smartMeter);
+    }
 }

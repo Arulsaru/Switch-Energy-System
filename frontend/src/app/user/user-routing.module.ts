@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserSmartMeterComponent } from './user-smart-meter/user-smart-meter.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'smart-meter', pathMatch: 'full' },
   { path: 'smart-meter', component: UserSmartMeterComponent },
 ];
 
@@ -12,4 +12,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AuthRoutingModule {}
+export class UserRoutingModule {}

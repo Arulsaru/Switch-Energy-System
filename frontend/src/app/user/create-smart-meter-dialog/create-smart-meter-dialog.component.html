@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Create New Smart Meter</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Provider Name</mat-label>
+        <mat-select [(value)]="selectedProviderName" [formControl]="selectProviderControl">
+            <mat-option *ngFor="let provider of providersList" [value]="provider.providerName">
+                {{provider.providerName}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="providersList.length == 0">
+            No providers found / No provider enabled
+        </mat-error>
+        <mat-error *ngIf="selectProviderControl.hasError('required')">
+            Select atleast one provider
+        </mat-error>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="cancelDialog()">Cancel</button>
+    <button mat-button [mat-dialog-close]="selectedProviderName"
+        [disabled]="selectProviderControl.hasError('required')">Ok</button>
+</div>

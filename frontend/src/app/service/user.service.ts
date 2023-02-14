@@ -16,6 +16,6 @@ export class UserService {
     }
 
     getUserByName(userName: String): Observable<userType> {
-        return this.http.get<userType>(`${baseURL}user`);
+        return this.http.get<userType>(`${baseURL}user\${userName}`);
     }
 }
