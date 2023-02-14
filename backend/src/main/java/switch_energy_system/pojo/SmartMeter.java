@@ -24,9 +24,9 @@ public class SmartMeter {
     private boolean isEnabled;
     private static int index = 1;
 
-    public SmartMeter(String smartMeterId, String userName) {
+    public SmartMeter(String userName) {
         this.userName = userName;
-        this.providerName = "New"; // default provider
+        this.providerName = "One Provider"; // default provider
         this.readings = "0";
         this.date = "0";
         this.smartMeterStatus = "PENDING";

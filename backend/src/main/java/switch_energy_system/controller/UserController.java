@@ -2,11 +2,10 @@ package switch_energy_system.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import switch_energy_system.pojo.Provider;
+import switch_energy_system.pojo.SmartMeter;
 import switch_energy_system.pojo.User;
+import switch_energy_system.service.SmartMeterService;
 import switch_energy_system.service.UserService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("user")
@@ -16,9 +15,13 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    SmartMeterService smartMeterService;
+
     @PostMapping  // user
     public void createUser(@RequestBody User user) throws Exception {
         userService.createUser(user);
+        smartMeterService.createSmartMeter(new SmartMeter(user.getUserName()));
     }
 
     @GetMapping

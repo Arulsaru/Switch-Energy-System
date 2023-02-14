@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 import switch_energy_system.interfacee.QueryImpl;
 import switch_energy_system.pojo.Provider;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class ProviderRepository implements QueryImpl {
@@ -38,6 +40,16 @@ public class ProviderRepository implements QueryImpl {
     public void addSmartMeterToTheProviderList(String smartMeterId, String providerName) {
         mongoTemplate.findAndModify(getQueryForProviderName(providerName),
                 new Update().push("smartMetersList", smartMeterId),
+                Provider.class);
+    }
+
+    public List<Provider> getAllEnabledProviders() {
+        return mongoTemplate.findAll(Provider.class).stream().filter(Provider::isEnabled).collect(Collectors.toList());
+    }
+
+    public void removeSmartMeterFromProviderList(String smartMeterId, String providerName) {
+        mongoTemplate.findAndModify(getQueryForProviderName(providerName),
+                new Update().pull("smartMeterList", null),
                 Provider.class);
     }
 }

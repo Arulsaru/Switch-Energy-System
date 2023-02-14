@@ -8,7 +8,7 @@ import switch_energy_system.service.ProviderService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/provider")
+@RequestMapping("provider")
 @CrossOrigin("*")
 public class ProviderController {
 
@@ -33,5 +33,10 @@ public class ProviderController {
     @GetMapping("/get-all-providers") // admin
     public List<Provider> getAllProviders() {
         return providerService.getAllProviders();
+    }
+
+    @GetMapping("/get-all-enabled-providers")
+    public List<Provider> getAllEnabledProviders() {
+        return providerService.getAllEnabledProviders();
     }
 }

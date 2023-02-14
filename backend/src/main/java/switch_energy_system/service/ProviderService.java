@@ -36,4 +36,12 @@ public class ProviderService {
     public void addSmartMeterToTheProviderList(String smartMeterId, String providerName) {
         providerRepository.addSmartMeterToTheProviderList(smartMeterId, providerName);
     }
+
+    public void removeSmartMeterFromProviderList(String smartMeterId, String providerName) {
+        providerRepository.removeSmartMeterFromProviderList(smartMeterId, providerName);
+    }
+
+    public List<Provider> getAllEnabledProviders() {
+        return providerRepository.getAllEnabledProviders();
+    }
 }
