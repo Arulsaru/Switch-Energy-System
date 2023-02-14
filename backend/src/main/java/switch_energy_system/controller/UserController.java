@@ -21,11 +21,11 @@ public class UserController {
     @PostMapping  // user
     public void createUser(@RequestBody User user) throws Exception {
         userService.createUser(user);
-        smartMeterService.createSmartMeter(new SmartMeter(user.getUserName()));
+        smartMeterService.createSmartMeter(user.getUserName(), "The One"); // default provider inga kudupee
     }
 
-    @GetMapping
-    public User getUserByUserName(String userName) {
+    @GetMapping("/{userName}")
+    public User getUserByUserName(@PathVariable String userName) {
         return userService.getUserByName(userName);
     }
 }

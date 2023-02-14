@@ -19,9 +19,10 @@ public class SmartMeterController {
     @Autowired
     ProviderService providerService;
 
-    @PostMapping
-    public void createSmartMeter(@RequestBody SmartMeter smartMeter) {
-        smartMeterService.createSmartMeter(smartMeter);
+    @PostMapping("/{userName}/create/{providerName}")
+    public void createSmartMeter(@PathVariable String userName, @PathVariable String providerName) {
+        System.out.println(providerName);
+        smartMeterService.createSmartMeter(userName, providerName);
     }
 
     @GetMapping
@@ -37,5 +38,10 @@ public class SmartMeterController {
     @PutMapping("/{smartMeterId}/approve-or-reject/{status}/{providerName}")
     public void approveOrRejectSmartMeter(@PathVariable String smartMeterId, @PathVariable String status, @PathVariable String providerName) {
         smartMeterService.approveOrRejectSmartMeter(smartMeterId, status, providerName);
+    }
+
+    @GetMapping("/{userName}")
+    public List<SmartMeter> getAllApprovedSmartMeterByUserName(@PathVariable String userName) {
+        return smartMeterService.getAllApprovedSmartMeterByUserName(userName);
     }
 }

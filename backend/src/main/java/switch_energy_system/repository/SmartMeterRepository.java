@@ -2,6 +2,8 @@ package switch_energy_system.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 import switch_energy_system.interfacee.QueryImpl;
@@ -38,6 +40,12 @@ public class SmartMeterRepository implements QueryImpl {
     }
 
     public List<SmartMeter> getAllPendingSmartMeter() {
-        return mongoTemplate.findAll(SmartMeter.class);
+        return mongoTemplate.find(Query.query(Criteria.where("smartMeterStatus").is("PENDING")), SmartMeter.class);
+    }
+
+    public List<SmartMeter> getAllApprovedSmartMeterByUserName(String userName) {
+        return mongoTemplate.find(
+                getQueryForUserName(userName).addCriteria(Criteria.where("smartMeterStatus").is("APPROVED")),
+                SmartMeter.class);
     }
 }

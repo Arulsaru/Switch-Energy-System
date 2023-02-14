@@ -18,7 +18,9 @@ public class SmartMeterService {
     @Autowired
     ProviderRepository providerService;
 
-    public void createSmartMeter(SmartMeter smartMeter) {
+    public void createSmartMeter(String userName, String providerName) {
+        SmartMeter smartMeter = new SmartMeter(userName);
+        smartMeter.setProviderName(providerName);
         smartMeterRepository.createSmartMeter(smartMeter);
     }
 
@@ -45,5 +47,9 @@ public class SmartMeterService {
         return smartMeterRepository.getAllPendingSmartMeter()
                 .stream().filter(smartMeter -> smartMeter.getSmartMeterStatus().equals("PENDING") && smartMeter.isEnabled())
                 .collect(Collectors.toList());
+    }
+
+    public List<SmartMeter> getAllApprovedSmartMeterByUserName(String userName) {
+        return smartMeterRepository.getAllApprovedSmartMeterByUserName(userName);
     }
 }
