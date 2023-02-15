@@ -30,5 +30,10 @@
 
 .card {
     float: left;
-    height: 260px;
+    height: 280px;
+}
+
+.readings-button {
+    margin-left: 130px;
+    margin-bottom: 30px;
 }

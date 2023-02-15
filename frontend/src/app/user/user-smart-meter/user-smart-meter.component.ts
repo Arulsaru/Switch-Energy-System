@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { smartMeterType } from 'src/app/interface/smart-meter';
+import { Router } from '@angular/router';
+import { smartMeterReading, smartMeterType } from 'src/app/interface/smart-meter';
 import { SmartMeterService } from 'src/app/service/smart-meter.service';
 import { CreateSmartMeterDialogComponent } from '../create-smart-meter-dialog/create-smart-meter-dialog.component';
 
@@ -13,18 +14,24 @@ export class UserSmartMeterComponent {
 
   smartMeters: smartMeterType[] = [];
   selectedProvider = '';
+  smartMeterReadings: smartMeterReading = {
+    smartMeterId: '',
+    dateAndTime: '',
+    epochTime: 0
+  }
 
   constructor(
     private smartMeterService: SmartMeterService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.smartMeterService.getAllApprovedSmartMeterByUserName("Arulmozhi").subscribe((res) => {
       this.smartMeters = res;
+      console.log(this.smartMeters);
     })
   }
-
 
   createSmartMeter(): void {
     const dialogRef = this.dialog.open(CreateSmartMeterDialogComponent, {
@@ -43,5 +50,9 @@ export class UserSmartMeterComponent {
           })
       }
     });
+  }
+
+  redirectToViewReadingsPage(smartMeterId: String): void {
+    this.router.navigateByUrl(`user/${smartMeterId}/view-readings`);
   }
 }

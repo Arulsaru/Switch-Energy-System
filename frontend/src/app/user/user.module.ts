@@ -7,13 +7,15 @@ import { RouterModule } from '@angular/router';
 import { UserSmartMeterComponent } from './user-smart-meter/user-smart-meter.component';
 import { UserRoutingModule } from './user-routing.module';
 import { CreateSmartMeterDialogComponent } from './create-smart-meter-dialog/create-smart-meter-dialog.component';
+import { SmartMeterReadingComponent } from './smart-meter-reading/smart-meter-reading.component';
 
 @NgModule({
   declarations: [
     UserComponent,
     ToolbarComponent,
     UserSmartMeterComponent,
-    CreateSmartMeterDialogComponent
+    CreateSmartMeterDialogComponent,
+    SmartMeterReadingComponent
   ],
   imports: [CommonModule, MaterialModule, RouterModule, UserRoutingModule],
 })
