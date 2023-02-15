@@ -25,7 +25,6 @@ public class SmartMeter {
     private long epochTime;
     private String smartMeterStatus;  // pending, approved, rejected
     private boolean isEnabled;
-    private List<SmartMeterReading> electricityReadings;
 
     public SmartMeter(String userName) {
         this.userName = userName;
@@ -34,7 +33,6 @@ public class SmartMeter {
         this.smartMeterStatus = "PENDING";
         this.epochTime = Instant.now().toEpochMilli();
         this.isEnabled = true;
-        this.electricityReadings = new ArrayList<>();
     }
 
     public String getCurrentDateAndTimeInGMT() {

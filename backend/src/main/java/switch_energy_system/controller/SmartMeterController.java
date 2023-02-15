@@ -44,9 +44,4 @@ public class SmartMeterController {
     public List<SmartMeter> getAllApprovedSmartMeterByUserName(@PathVariable String userName) {
         return smartMeterService.getAllApprovedSmartMeterByUserName(userName);
     }
-
-    @GetMapping("/readings/{smartMeterId}")
-    public SmartMeterReading getLastSmartMeterReading(@PathVariable String smartMeterId) {
-        return smartMeterService.getLastSmartMeterReading(smartMeterId);
-    }
 }

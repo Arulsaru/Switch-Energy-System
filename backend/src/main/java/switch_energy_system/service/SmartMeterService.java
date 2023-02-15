@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import switch_energy_system.pojo.Provider;
 import switch_energy_system.pojo.SmartMeter;
 import switch_energy_system.pojo.SmartMeterReading;
+import switch_energy_system.pojo.TotalReadings;
 import switch_energy_system.repository.ProviderRepository;
 import switch_energy_system.repository.SmartMeterRepository;
+import switch_energy_system.repository.TotalReadingsRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,15 +19,20 @@ public class SmartMeterService {
     SmartMeterRepository smartMeterRepository;
 
     @Autowired
+    TotalReadingsRepository totalReadingsRepository;
+
+    @Autowired
     ProviderRepository providerService;
 
     public void createSmartMeter(String userName, String providerName) {
         SmartMeter smartMeter = new SmartMeter(userName);
         smartMeter.setProviderName(providerName);
         smartMeterRepository.createSmartMeter(smartMeter);
+
         SmartMeterReading smartMeterReading = new SmartMeterReading(smartMeter.getSmartMeterId());
-        smartMeterRepository.createSmartMeterReading(smartMeterReading);
-        smartMeterRepository.pushSmartMeterReadingsIntoList(smartMeterReading);
+        TotalReadings totalReadings = new TotalReadings(smartMeter.getSmartMeterId());
+        totalReadingsRepository.createTotalReadingsCollection(totalReadings);
+        totalReadingsRepository.pushSmartMeterReadingsIntoTotalReadingList(smartMeterReading);
 //        smartMeterRepository.createSmartMeterReading(new SmartMeterReading(smartMeter.getSmartMeterId()));
     }
 
@@ -56,9 +63,5 @@ public class SmartMeterService {
 
     public List<SmartMeter> getAllApprovedSmartMeterByUserName(String userName) {
         return smartMeterRepository.getAllApprovedSmartMeterByUserName(userName);
-    }
-
-    public SmartMeterReading getLastSmartMeterReading(String smartMeterId) {
-        return smartMeterRepository.getLastSmartMeterReading(smartMeterId);
     }
 }

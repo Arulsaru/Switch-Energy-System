@@ -48,18 +48,4 @@ public class SmartMeterRepository implements QueryImpl {
                 getQueryForUserName(userName).addCriteria(Criteria.where("smartMeterStatus").is("APPROVED")),
                 SmartMeter.class);
     }
-
-    public void createSmartMeterReading(SmartMeterReading smartMeterReading) {
-        mongoTemplate.save(smartMeterReading);
-    }
-
-    public void pushSmartMeterReadingsIntoList(SmartMeterReading smartMeterReading) {
-        mongoTemplate.findAndModify(getQueryForSmartMeterId(smartMeterReading.getSmartMeterId()),
-                new Update().push("electricityReadings", smartMeterReading),
-                SmartMeter.class);
-    }
-
-    public SmartMeterReading getLastSmartMeterReading(String smartMeterId) {
-        return mongoTemplate.findOne( getQueryForSmartMeterId(smartMeterId),SmartMeter.class).getElectricityReadings().get(0);
-    }
 }

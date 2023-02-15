@@ -10,17 +10,18 @@ import java.util.Date;
 import java.util.TimeZone;
 
 @Data
-@Document(collection = "smartMeterReadings")
 public class SmartMeterReading {
 
     private String smartMeterId;
     private String dateAndTime;
     private long epochTimeStamp;
+    private long readings;
 
     public SmartMeterReading(String smartMeterId) {
         this.smartMeterId = smartMeterId;
         this.dateAndTime = getCurrentDateAndTimeInGMT();
         this.epochTimeStamp = Instant.now().toEpochMilli();
+        this.readings = 0;
     }
 
     public String getCurrentDateAndTimeInGMT() {
