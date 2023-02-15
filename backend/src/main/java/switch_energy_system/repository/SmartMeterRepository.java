@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 import switch_energy_system.interfacee.QueryImpl;
 import switch_energy_system.pojo.SmartMeter;
+import switch_energy_system.pojo.SmartMeterReading;
 
 import java.util.List;
 
@@ -46,6 +47,17 @@ public class SmartMeterRepository implements QueryImpl {
     public List<SmartMeter> getAllApprovedSmartMeterByUserName(String userName) {
         return mongoTemplate.find(
                 getQueryForUserName(userName).addCriteria(Criteria.where("smartMeterStatus").is("APPROVED")),
+                SmartMeter.class);
+    }
+
+    public void createSmartMeterReading(SmartMeterReading smartMeterReading) {
+        System.out.println("smart meter reading pojo created");
+        mongoTemplate.save(smartMeterReading);
+    }
+
+    public void pushSmartMeterReadingsIntoList(SmartMeterReading smartMeterReading) {
+        mongoTemplate.findAndModify(getQueryForSmartMeterId(smartMeterReading.getSmartMeterId()),
+                new Update().push("electricityReadings", smartMeterReading),
                 SmartMeter.class);
     }
 }

@@ -21,7 +21,6 @@ public class SmartMeterController {
 
     @PostMapping("/{userName}/create/{providerName}")
     public void createSmartMeter(@PathVariable String userName, @PathVariable String providerName) {
-        System.out.println(providerName);
         smartMeterService.createSmartMeter(userName, providerName);
     }
 

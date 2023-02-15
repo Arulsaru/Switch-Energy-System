@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 
 @Data
@@ -22,6 +25,7 @@ public class SmartMeter {
     private long epochTime;
     private String smartMeterStatus;  // pending, approved, rejected
     private boolean isEnabled;
+    private List<SmartMeterReading> electricityReadings;
 
     public SmartMeter(String userName) {
         this.userName = userName;
@@ -30,5 +34,6 @@ public class SmartMeter {
         this.smartMeterStatus = "PENDING";
         this.epochTime = 0;
         this.isEnabled = true;
+        this.electricityReadings = new ArrayList<>();
     }
 }

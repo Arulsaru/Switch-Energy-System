@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import switch_energy_system.pojo.Provider;
 import switch_energy_system.pojo.SmartMeter;
+import switch_energy_system.pojo.SmartMeterReading;
 import switch_energy_system.repository.ProviderRepository;
 import switch_energy_system.repository.SmartMeterRepository;
 
@@ -22,6 +23,10 @@ public class SmartMeterService {
         SmartMeter smartMeter = new SmartMeter(userName);
         smartMeter.setProviderName(providerName);
         smartMeterRepository.createSmartMeter(smartMeter);
+        SmartMeterReading smartMeterReading = new SmartMeterReading(smartMeter.getSmartMeterId());
+        smartMeterRepository.createSmartMeterReading(smartMeterReading);
+        smartMeterRepository.pushSmartMeterReadingsIntoList(smartMeterReading);
+//        smartMeterRepository.createSmartMeterReading(new SmartMeterReading(smartMeter.getSmartMeterId()));
     }
 
     public void switchProviderForSingleSmartMeter(String smartMeterId, String providerName) {
