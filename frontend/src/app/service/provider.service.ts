@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { providerType } from '../interface/provider';
-import { createProviderType } from '../interface/create-provider';
+import { createProviderType } from '../interface/provider';
 import { baseURL } from '../constant/constant-variables';
 
 @Injectable({

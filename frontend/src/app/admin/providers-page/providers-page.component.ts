@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { createProviderType } from '../../interface/create-provider';
+import { createProviderType } from '../../interface/provider';
 import { providerType } from '../../interface/provider';
 import { ProviderService } from '../../service/provider.service';
 import Swal from 'sweetalert2';
