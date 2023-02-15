@@ -23,8 +23,11 @@ public class ProviderService {
         providerRepository.enableOrDisableProvider(providerName, true);
     }
 
-    public void disableProvider(String providerName) {
+    public void disableProvider(String providerName) throws Exception {
         // should switch provider for all the users using this provider
+        if(getAllEnabledProviders().toArray().length == 1) {
+            throw new Exception("There should be atleast one provider in enable state");
+        }
         providerRepository.enableOrDisableProvider(providerName, false);
         smartMeterService.switchProvidersForAllSmartMeters(providerName);
     }

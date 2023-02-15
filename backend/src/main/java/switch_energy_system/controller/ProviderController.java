@@ -26,7 +26,7 @@ public class ProviderController {
     }
 
     @PutMapping("/disable/{providerName}") // admin
-    public void disableProvider(@PathVariable String providerName) {
+    public void disableProvider(@PathVariable String providerName) throws Exception {
         providerService.disableProvider(providerName);
     }
 
