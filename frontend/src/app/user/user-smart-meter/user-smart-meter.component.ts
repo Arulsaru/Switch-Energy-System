@@ -12,6 +12,7 @@ import { CreateSmartMeterDialogComponent } from '../create-smart-meter-dialog/cr
 export class UserSmartMeterComponent {
 
   smartMeters: smartMeterType[] = [];
+  selectedProvider = '';
 
   constructor(
     private smartMeterService: SmartMeterService,
@@ -19,13 +20,11 @@ export class UserSmartMeterComponent {
   ) {}
 
   ngOnInit() {
-    this.smartMeterService.getSmartMeterByUserName("Arulmozhi").subscribe((res) => {
-      console.log(res);
+    this.smartMeterService.getAllApprovedSmartMeterByUserName("Arulmozhi").subscribe((res) => {
       this.smartMeters = res;
     })
   }
 
-  selectedProvider = '';
 
   createSmartMeter(): void {
     const dialogRef = this.dialog.open(CreateSmartMeterDialogComponent, {
@@ -39,9 +38,9 @@ export class UserSmartMeterComponent {
         this.selectedProvider = result;
         this.smartMeterService
           .createSmartMeter(this.selectedProvider)
-          .subscribe((result) => {
-            console.log('smart meter created');
-          });
+          .subscribe({
+            next: () => console.log("smart meter created")
+          })
       }
     });
   }

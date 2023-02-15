@@ -10,9 +10,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class CreateProviderDialogComponent {
   newProvider: createProviderType = {
-    providerName: "",
-    ratePerWatt: 0
-  }
+    providerName: '',
+    ratePerWatt: 0,
+  };
+  
   constructor(
     public dialogRef: MatDialogRef<ProvidersPageComponent>,
     @Inject(MAT_DIALOG_DATA)

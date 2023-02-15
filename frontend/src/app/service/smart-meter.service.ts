@@ -15,10 +15,7 @@ export class SmartMeterService {
     return this.http.get<smartMeterType[]>(`${baseURL}smartmeter`);
   }
 
-  approveOrRejectSmartMeter(
-    smartMeterId: String,
-    smartMeterStatus: String,
-    providerName: String
+  approveOrRejectSmartMeter(smartMeterId: String, smartMeterStatus: String, providerName: String
   ): Observable<Object> {
     return this.http.put(
       `${baseURL}smartmeter/${smartMeterId}/approve-or-reject/${smartMeterStatus}/${providerName}`,
@@ -33,7 +30,7 @@ export class SmartMeterService {
     );
   }
 
-  getSmartMeterByUserName(userName: String): Observable<smartMeterType[]> {
+  getAllApprovedSmartMeterByUserName(userName: String): Observable<smartMeterType[]> {
     return this.http.get<smartMeterType[]>(`${baseURL}smartmeter/${userName}`);
   }
 }

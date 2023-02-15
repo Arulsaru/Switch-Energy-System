@@ -7,6 +7,7 @@ import { SmartMeterService } from '../../service/smart-meter.service';
   templateUrl: './admin-smart-meter.component.html',
   styleUrls: ['./admin-smart-meter.component.css'],
 })
+
 export class AdminSmartMeterComponent implements OnInit {
   smartMeterList: smartMeterType[] = [];
 
@@ -16,23 +17,19 @@ export class AdminSmartMeterComponent implements OnInit {
     this.getSmartMeterList();
   }
 
-  getSmartMeterList():void{
-    this.service
-      .getPendingSmartMeters()
-      .subscribe((response: smartMeterType[]) => {
-        this.smartMeterList = response;
-      });
+  getSmartMeterList(): void {
+    this.service.getPendingSmartMeters().subscribe({
+      next: (response: smartMeterType[]) => this.smartMeterList = response
+    });
   }
 
   approveSmartMeter(smartMeter: smartMeterType): void {
-    this.service.approveOrRejectSmartMeter(smartMeter.smartMeterId, "APPROVED", smartMeter.providerName).subscribe((res) => {
-      this.getSmartMeterList();
-    });
+    this.service.approveOrRejectSmartMeter(smartMeter.smartMeterId, 'APPROVED', smartMeter.providerName)
+                .subscribe({ next: () => this.getSmartMeterList() });
   }
-  
+
   rejectSmartMeter(smartMeter: smartMeterType): void {
-    this.service.approveOrRejectSmartMeter(smartMeter.smartMeterId, "REJECTED", smartMeter.providerName).subscribe((res) => {
-      this.getSmartMeterList();
-    });
+    this.service.approveOrRejectSmartMeter(smartMeter.smartMeterId, 'REJECTED', smartMeter.providerName)
+                .subscribe({ next: () => this.getSmartMeterList() })
   }
 }

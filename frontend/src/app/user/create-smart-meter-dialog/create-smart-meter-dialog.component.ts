@@ -23,11 +23,8 @@ export class CreateSmartMeterDialogComponent {
   ) {}
 
   ngOnInit(): void {
-    this.providerService.getAllEnabledProviders().subscribe((res) => {
-      // if(res == null) {
-        
-      // }
-      this.providersList = res;
+    this.providerService.getAllEnabledProviders().subscribe({
+      next: (response) => this.providersList = response
     });
   }
 

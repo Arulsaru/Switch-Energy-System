@@ -26,5 +26,11 @@
                         'Disable': 'Enable'}}</button></td>
             </tr>
         </tbody>
-    </table>
+    </table> <br>
+    <div class="alert alert-danger mt-3" *ngIf="isLastProviderEnabled" role="alert">
+        <p class="h5"><b>Can't disable provider</b></p>
+        <p>This is the only enabled provider available.</p>
+        <hr>
+        <p class="mb-0">Try creating another provider or enable another provider and disable it</p>
+    </div>
 </div>

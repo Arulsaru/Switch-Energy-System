@@ -35,14 +35,13 @@ export class SignupPageComponent {
 
   print(): void {
     console.log(this.signUpForm.value);
-    this.service.createUser(this.signUpForm.value).subscribe(
-      (res) => {},
-      (err) => {
+    this.service.createUser(this.signUpForm.value).subscribe({
+      error: () => {
         this.isUserNameAlreadyAvailable = true;
         setTimeout(() => {
-          this.isUserNameAlreadyAvailable = false;
+        this.isUserNameAlreadyAvailable = false;
         }, 3000);
       }
-    );
+    });
   }
 }
