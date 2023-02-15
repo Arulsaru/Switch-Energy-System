@@ -34,7 +34,6 @@ public class SmartMeterRepository implements QueryImpl {
     }
 
     public void approveOrRejectSmartMeter(String smartMeterId, String status) {
-        System.out.println(smartMeterId + " " + status);
         mongoTemplate.findAndModify(getQueryForSmartMeterId(smartMeterId),
                 new Update().set("smartMeterStatus", status),
                 SmartMeter.class);
@@ -51,7 +50,6 @@ public class SmartMeterRepository implements QueryImpl {
     }
 
     public void createSmartMeterReading(SmartMeterReading smartMeterReading) {
-        System.out.println("smart meter reading pojo created");
         mongoTemplate.save(smartMeterReading);
     }
 
@@ -59,5 +57,9 @@ public class SmartMeterRepository implements QueryImpl {
         mongoTemplate.findAndModify(getQueryForSmartMeterId(smartMeterReading.getSmartMeterId()),
                 new Update().push("electricityReadings", smartMeterReading),
                 SmartMeter.class);
+    }
+
+    public SmartMeterReading getLastSmartMeterReading(String smartMeterId) {
+        return mongoTemplate.findOne( getQueryForSmartMeterId(smartMeterId),SmartMeter.class).getElectricityReadings().get(0);
     }
 }

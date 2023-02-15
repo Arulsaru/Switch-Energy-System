@@ -57,4 +57,8 @@ public class SmartMeterService {
     public List<SmartMeter> getAllApprovedSmartMeterByUserName(String userName) {
         return smartMeterRepository.getAllApprovedSmartMeterByUserName(userName);
     }
+
+    public SmartMeterReading getLastSmartMeterReading(String smartMeterId) {
+        return smartMeterRepository.getLastSmartMeterReading(smartMeterId);
+    }
 }

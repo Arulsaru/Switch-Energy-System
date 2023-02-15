@@ -3,6 +3,7 @@ package switch_energy_system.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import switch_energy_system.pojo.SmartMeter;
+import switch_energy_system.pojo.SmartMeterReading;
 import switch_energy_system.service.ProviderService;
 import switch_energy_system.service.SmartMeterService;
 
@@ -42,5 +43,10 @@ public class SmartMeterController {
     @GetMapping("/{userName}")
     public List<SmartMeter> getAllApprovedSmartMeterByUserName(@PathVariable String userName) {
         return smartMeterService.getAllApprovedSmartMeterByUserName(userName);
+    }
+
+    @GetMapping("/readings/{smartMeterId}")
+    public SmartMeterReading getLastSmartMeterReading(@PathVariable String smartMeterId) {
+        return smartMeterService.getLastSmartMeterReading(smartMeterId);
     }
 }

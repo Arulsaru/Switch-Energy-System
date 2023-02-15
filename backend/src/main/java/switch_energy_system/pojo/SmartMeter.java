@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.*;
 
 @Data
 @Document(collection = "smartMeter")
@@ -30,10 +30,16 @@ public class SmartMeter {
     public SmartMeter(String userName) {
         this.userName = userName;
         this.readings = "0";
-        this.date = "0";
+        this.date = getCurrentDateAndTimeInGMT();
         this.smartMeterStatus = "PENDING";
-        this.epochTime = 0;
+        this.epochTime = Instant.now().toEpochMilli();
         this.isEnabled = true;
         this.electricityReadings = new ArrayList<>();
+    }
+
+    public String getCurrentDateAndTimeInGMT() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return dateFormat.format(new Date()); // 2023-02-15 06:48
     }
 }
