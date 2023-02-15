@@ -8,9 +8,9 @@
             </mat-option>
         </mat-select>
         <mat-error *ngIf="providersList.length == 0">
-            No providers found / No provider enabled
+            No providers found / enabled
         </mat-error>
-        <mat-error *ngIf="selectProviderControl.hasError('required')">
+        <mat-error *ngIf="selectProviderControl.hasError('required') && providersList.length != 0">
             Select atleast one provider
         </mat-error>
     </mat-form-field>

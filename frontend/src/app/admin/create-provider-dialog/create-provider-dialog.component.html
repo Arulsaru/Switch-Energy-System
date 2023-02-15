@@ -1,15 +1,20 @@
-<h1 mat-dialog-title>Heyyyy</h1>
+<h1 mat-dialog-title>Create New Provider</h1>
 <div mat-dialog-content>
-    <mat-form-field>
-        <mat-label>Providers Name</mat-label>
-        <input matInput [(ngModel)]="newProvider.providerName" name="provider-name" type="text">
-    </mat-form-field> <br>
-    <mat-form-field>
-        <mat-label>Rate Per Watt</mat-label>
-        <input matInput [(ngModel)]="newProvider.ratePerWatt" name="rate-per-watt" type="text">
-    </mat-form-field>
+    <form [formGroup]="createProviderForm">
+        <mat-form-field>
+            <mat-label>Providers Name</mat-label>
+            <input matInput formControlName="providerName" type="text">
+            <mat-error>Provider name is required</mat-error>
+        </mat-form-field>
+        <br><br>
+        <mat-form-field>
+            <mat-label>Rate Per Watt</mat-label>
+            <input matInput formControlName="ratePerWatt" name="rate-per-watt" type="text">
+            <mat-error>Rate/Watt is required</mat-error>
+        </mat-form-field>
+    </form>
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click)="cancelDialog()">Cancel</button>
-    <button mat-button [mat-dialog-close]="newProvider">Ok</button>
+    <button mat-button (click)="cancelDialog()">cancel</button>
+    <button mat-button [mat-dialog-close]="createProviderForm.value" [disabled]="!createProviderForm.valid">create</button>
 </div>

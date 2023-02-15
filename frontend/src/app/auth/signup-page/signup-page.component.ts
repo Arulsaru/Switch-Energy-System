@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { UserService } from '../../service/user.service';
 
 @Component({
@@ -24,14 +24,34 @@ export class SignupPageComponent {
 
   signUpForm = this.formBuilder.group({
     userName: [
-      'Arulmozhi',
+      '',
       [Validators.required, Validators.pattern(/[A-Za-z]/)],
     ],
-    password: ['Arulsaru', [Validators.required]],
-    reEnterPassword: ['Arulsaru', [Validators.required]],
+    password: ['', [Validators.required]],
+    reEnterPassword: ['Arulsaru', [Validators.required]], 
     email: ['saruarul154@gmail.com', [Validators.required]],
     phoneNumber: ['1234567890', Validators.required],
   });
+
+  get userName(): AbstractControl {
+    return this.signUpForm.get('userName')!;
+  }
+
+  get password(): AbstractControl {
+    return this.signUpForm.get('password')!;
+  }
+
+  get reEnterPassword(): AbstractControl {
+    return this.signUpForm.get('reEnterPassword')!;
+  }
+
+  get email(): AbstractControl {
+    return this.signUpForm.get('email')!;
+  }
+
+  get phoneNumber(): AbstractControl {
+    return this.signUpForm.get('phoneNumber')!;
+  }
 
   print(): void {
     console.log(this.signUpForm.value);

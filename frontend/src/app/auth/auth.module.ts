@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DescriptionComponent } from './description/description.component';
 import { RouterModule } from '@angular/router';
 import { AuthRoutingModule } from './auth-routing.module';
+import { MaterialModule } from 'src/material/material.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AuthRoutingModule } from './auth-routing.module';
     RouterModule,
     ReactiveFormsModule,
     AuthRoutingModule,
+    MaterialModule
   ]
 })
 export class AuthModule { }
