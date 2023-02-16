@@ -1,6 +1,8 @@
 package switch_energy_system.pojo;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.text.DateFormat;
@@ -10,6 +12,8 @@ import java.util.Date;
 import java.util.TimeZone;
 
 @Data
+@Getter
+@Setter
 public class SmartMeterReading {
 
     private String smartMeterId;
@@ -17,11 +21,10 @@ public class SmartMeterReading {
     private long epochTimeStamp;
     private long readings;
 
-    public SmartMeterReading(String smartMeterId) {
-        this.smartMeterId = smartMeterId;
+    public SmartMeterReading(long readings) {
         this.dateAndTime = getCurrentDateAndTimeInGMT();
         this.epochTimeStamp = Instant.now().toEpochMilli();
-        this.readings = 0;
+        this.readings = readings;
     }
 
     public String getCurrentDateAndTimeInGMT() {

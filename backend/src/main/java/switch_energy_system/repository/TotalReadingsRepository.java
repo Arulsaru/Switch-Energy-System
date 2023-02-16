@@ -2,6 +2,11 @@ package switch_energy_system.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 import switch_energy_system.interfacee.QueryImpl;
@@ -20,8 +25,8 @@ public class TotalReadingsRepository implements QueryImpl {
         mongoTemplate.save(totalReadings);
     }
 
-    public List<TotalReadings> getAllReadingsBySmartMeterId(String smartMeterId) {
-        return mongoTemplate.find(getQueryForProviderName(smartMeterId), TotalReadings.class);
+    public TotalReadings getAllReadingsBySmartMeterId(String smartMeterId) {
+        return mongoTemplate.findOne(getQueryForSmartMeterId(smartMeterId), TotalReadings.class);
     }
 
     public void pushSmartMeterReadingsIntoTotalReadingList(SmartMeterReading smartMeterReading) {
@@ -30,11 +35,19 @@ public class TotalReadingsRepository implements QueryImpl {
                 TotalReadings.class);
     }
 
-//    public void calculateReadings(SmartMeterReading smartMeterReading, TotalReadings totalReadings) {
-//        smartMeterReading.setSmartMeterId("63ed1a3acdf1f32b7ba5f7ff");
-//        totalReadings.setSmartMeterId("63ed1a3acdf1f32b7ba5f7ff");
-//        pushSmartMeterReadingsIntoTotalReadingList(smartMeterReading, totalReadings);
-//        List<TotalReadings> totalReadingsList = mongoTemplate.find(getQueryForSmartMeterId(smartMeterReading.getSmartMeterId()), TotalReadings.class);
-//        System.out.println(totalReadingsList);
+//    public List<TotalReadings> calculateTotalReadingsOfASmartMeter(String smartMeterId) {
+//        return mongoTemplate.find(
+//                Query.query(Criteria.where("electricityReadings.readings").exists(true)
+//
+//
+//                ),
+//                TotalReadings.class);
 //    }
+
+    public void calculateAndStoreReading() {
+        SmartMeterReading smartMeterReading = new SmartMeterReading(10);
+        mongoTemplate.updateMulti(Query.query(Criteria.where("isEnabled").is(true)),
+                new Update().push("electricityReadings", smartMeterReading),
+                TotalReadings.class);
+    }
 }

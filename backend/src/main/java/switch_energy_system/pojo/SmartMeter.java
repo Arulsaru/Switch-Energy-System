@@ -37,7 +37,7 @@ public class SmartMeter {
 
     public String getCurrentDateAndTimeInGMT() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        dateFormat.setTimeZone(TimeZone.getTimeZone("ISO"));
         return dateFormat.format(new Date()); // 2023-02-15 06:48
     }
 }

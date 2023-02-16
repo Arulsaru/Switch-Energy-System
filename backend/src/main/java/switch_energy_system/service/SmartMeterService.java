@@ -29,10 +29,10 @@ public class SmartMeterService {
         smartMeter.setProviderName(providerName);
         smartMeterRepository.createSmartMeter(smartMeter);
 
-        SmartMeterReading smartMeterReading = new SmartMeterReading(smartMeter.getSmartMeterId());
+        SmartMeterReading smartMeterReading = new SmartMeterReading(0);
         TotalReadings totalReadings = new TotalReadings(smartMeter.getSmartMeterId());
         totalReadingsRepository.createTotalReadingsCollection(totalReadings);
-        totalReadingsRepository.pushSmartMeterReadingsIntoTotalReadingList(smartMeterReading);
+        totalReadingsRepository.pushSmartMeterReadingsIntoTotalReadingList(smartMeterReading);  // initial
 //        smartMeterRepository.createSmartMeterReading(new SmartMeterReading(smartMeter.getSmartMeterId()));
     }
 

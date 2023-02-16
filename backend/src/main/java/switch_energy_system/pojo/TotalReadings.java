@@ -9,8 +9,10 @@ import java.util.List;
 @Document(collection = "totalReadings")
 public class TotalReadings {
     private String smartMeterId;
+    private boolean isEnabled;
     private List<SmartMeterReading> electricityReadings;
     public TotalReadings(String smartMeterId) {
         this.smartMeterId = smartMeterId;
+        this.isEnabled = true;
     }
 }
