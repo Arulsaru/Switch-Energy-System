@@ -4,7 +4,7 @@
         <mat-label>Provider Name</mat-label>
         <mat-select [(value)]="selectedProviderName" [formControl]="selectProviderControl">
             <mat-option *ngFor="let provider of providersList" [value]="provider.providerName">
-                {{provider.providerName}}
+                {{provider.providerName}}&emsp;<b>-</b>&emsp;{{provider.ratePerWatt}} rate/watt
             </mat-option>
         </mat-select>
         <mat-error *ngIf="providersList.length == 0">
