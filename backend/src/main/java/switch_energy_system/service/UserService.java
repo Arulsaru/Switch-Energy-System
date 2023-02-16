@@ -1,6 +1,7 @@
 package switch_energy_system.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import switch_energy_system.pojo.User;
 import switch_energy_system.repository.UserRepository;
@@ -12,11 +13,14 @@ public class UserService {
     UserRepository userRepository;
 
     @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
     ValidatorService userValidator;
 
     public void createUser(User user) throws Exception {
         userValidator.preValidate(user);
-        user.setPassword(user.getPassword()); // password encode pannanu
+        user.setPassword(passwordEncoder.encode(user.getPassword())); // password encode pannanu
         userRepository.createUser(user);
     }
 
