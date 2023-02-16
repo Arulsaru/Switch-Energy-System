@@ -15,6 +15,10 @@ export class UserService {
         return this.http.post(`${baseURL}user`, user);
     }
 
+    generateToken(user: Object): Observable<Object> {
+        return this.http.post(`${baseURL}user/authenticate`, user);
+    }
+
     getUserByName(userName: String): Observable<userType> {
         return this.http.get<userType>(`${baseURL}user\${userName}`);
     }

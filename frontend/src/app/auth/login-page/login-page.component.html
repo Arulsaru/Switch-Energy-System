@@ -20,7 +20,7 @@
                 </mat-icon>
                 <a href="/#" id="forgot-password-link" class="link-dark small fw-bold">Forgot Password ?</a>
             </div>
-            <button id="login-button" [disabled]="loginForm.invalid" class="btn btn-primary">LOGIN</button>
+            <button id="login-button" [disabled]="loginForm.invalid" class="btn btn-primary" (click)="login()">LOGIN</button>
             <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/auth/signup"
                     class="link-danger">Register</a>
             </p>
