@@ -3,7 +3,7 @@
 <div class="main-container">
     <mat-card class="card">
         <div class="create-smart-meter">
-            <button  mat-mini-fab (click)="createSmartMeter()" color="dark"><mat-icon>add</mat-icon></button> <br>
+            <button mat-mini-fab (click)="createSmartMeter()" color="dark"><mat-icon>add</mat-icon></button> <br>
             <p class="h6" id="create-smart-meter-text">CREATE SMART METER</p>
         </div>
     </mat-card>
@@ -18,11 +18,9 @@
         <p><b>PROVIDER NAME :</b>&emsp;{{smartMeter.providerName}}</p>
         <p><b>STATUS :</b>&emsp;{{smartMeter.smartMeterStatus}}</p>
         <p><b>READINGS: </b>&emsp;{{smartMeter.readings}}</p>
-        <p><b>AMOUNT TO BE PAI: </b>&emsp;{{smartMeter.readings}}</p>
-        <div class="readings-button">
-            <span><i>View Readings &emsp;</i></span>
-            <button color="none" mat-mini-fab (click)="redirectToViewReadingsPage(smartMeter.smartMeterId)"><mat-icon>keyboard_arrow_right</mat-icon></button>
-        </div>
+        <p><b>AMOUNT TO BE PAID: </b>&emsp;{{smartMeter.readings}}</p> <br>
+        <button color="none" mat-raised-button  id="switch-provider-button" (click)="switchProvider(smartMeter.smartMeterId)">SWITCH
+            PROVIDERS<mat-icon>keyboard_arrow_right</mat-icon></button>
         <!-- <p><b>LATEST READINGS :</b>&emsp;{{smartMeter.readings}}</p> -->
     </mat-card>
 </div>

@@ -4,10 +4,9 @@ export interface smartMeterType {
     userName: String,
     enabled: Boolean,
     epochTime: Number,
-    readings: String,
+    readings: Number,
     date: String,
     smartMeterStatus: String,
-    electricityReadings: Array<smartMeterReading>
 }
 
 export interface smartMeterReading {

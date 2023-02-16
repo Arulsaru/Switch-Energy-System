@@ -33,4 +33,8 @@ export class SmartMeterService {
   getAllApprovedSmartMeterByUserName(userName: String): Observable<smartMeterType[]> {
     return this.http.get<smartMeterType[]>(`${baseURL}smartmeter/${userName}`);
   }
+
+  switchProvider(smartMeterId: String, providerName: String) {
+    return this.http.put(`${baseURL}smartmeter/${smartMeterId}/switch-providers/${providerName}`, null);
+  }
 }

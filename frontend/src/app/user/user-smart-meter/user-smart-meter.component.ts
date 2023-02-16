@@ -23,12 +23,15 @@ export class UserSmartMeterComponent {
 
   constructor(
     private smartMeterService: SmartMeterService,
-    public dialog: MatDialog,
-    private router: Router
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
-    this.smartMeterService.getAllApprovedSmartMeterByUserName("Arulmozhi").subscribe({
+    this.getAllSmartMeter("Arulmozhi");
+  }
+
+  getAllSmartMeter(userName: String): void {
+    this.smartMeterService.getAllApprovedSmartMeterByUserName(userName).subscribe({
       next: (res) => this.smartMeters = res
     })
   }
@@ -52,7 +55,23 @@ export class UserSmartMeterComponent {
     });
   }
 
-  redirectToViewReadingsPage(smartMeterId: String): void {
-    this.router.navigateByUrl(`user/${smartMeterId}/view-readings`);
+  switchProvider(smartMeterId: String): void {
+    const dialogRef = this.dialog.open(CreateSmartMeterDialogComponent, {
+      data: {
+        selectedProvider: this.selectedProvider,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result != null) {
+        this.selectedProvider = result;
+        this.smartMeterService
+          .switchProvider(smartMeterId, this.selectedProvider)
+          .subscribe({
+            next: () => console.log("smart meter created")
+          })
+      }
+    });
+    this.getAllSmartMeter("Arulmozhi"); 
   }
 }
