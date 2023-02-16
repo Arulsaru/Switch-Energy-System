@@ -2,13 +2,12 @@ package switch_energy_system.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.aggregation.Aggregation;
-import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
-import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.aggregation.*;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
+import switch_energy_system.dto.SmartMeterReadingResponse;
 import switch_energy_system.interfacee.QueryImpl;
 import switch_energy_system.pojo.SmartMeterReading;
 import switch_energy_system.pojo.TotalReadings;
@@ -30,19 +29,26 @@ public class TotalReadingsRepository implements QueryImpl {
     }
 
     public void pushSmartMeterReadingsIntoTotalReadingList(SmartMeterReading smartMeterReading) {
+        System.out.println("afdfds");
         mongoTemplate.findAndModify(getQueryForSmartMeterId(smartMeterReading.getSmartMeterId()),
                 new Update().push("electricityReadings", smartMeterReading),
                 TotalReadings.class);
     }
 
-//    public List<TotalReadings> calculateTotalReadingsOfASmartMeter(String smartMeterId) {
-//        return mongoTemplate.find(
-//                Query.query(Criteria.where("electricityReadings.readings").exists(true)
-//
-//
-//                ),
-//                TotalReadings.class);
-//    }
+    public List<SmartMeterReadingResponse> calculateTotalReadingsOfASmartMeter() {
+//        MatchOperation matchOperation = Aggregation.match(Criteria.where("isEnabled").is(true)
+//                        .and(String.valueOf(Criteria.where("electricityReadings.dateAndTime").gte("2023-02-16T12:38:50.008+0000").lte("2023-02-16T12:40:20.006+0000"))));
+
+        UnwindOperation unwindOperation = Aggregation.unwind("electricityReadings");
+        MatchOperation matchOperation = Aggregation.match(Criteria.where("isEnabled").is(true));
+        GroupOperation group = Aggregation.group("smartMeterId").sum("electricityReadings.readings").as("total");
+
+        Aggregation aggregation = Aggregation.newAggregation(unwindOperation, matchOperation, group);
+
+        AggregationResults<SmartMeterReadingResponse> result = mongoTemplate.aggregate(aggregation, TotalReadings.class, SmartMeterReadingResponse.class);
+        System.out.println(result.getMappedResults());
+        return result.getMappedResults();
+    }
 
     public void calculateAndStoreReading() {
         SmartMeterReading smartMeterReading = new SmartMeterReading(10);

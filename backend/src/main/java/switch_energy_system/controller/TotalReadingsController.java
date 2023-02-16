@@ -1,9 +1,8 @@
 package switch_energy_system.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.*;
-import switch_energy_system.pojo.SmartMeterReading;
+import switch_energy_system.dto.SmartMeterReadingResponse;
 import switch_energy_system.pojo.TotalReadings;
 import switch_energy_system.service.TotalReadingsService;
 
@@ -20,6 +19,11 @@ public class TotalReadingsController {
     @GetMapping("/{smartMeterId}")
     public TotalReadings getAllReadingsBySmartMeterId(String smartMeterId) {
         return totalReadingsService.getAllReadingsBySmartMeterId(smartMeterId);
+    }
+
+    @GetMapping("/calculate")
+    public List<SmartMeterReadingResponse> calculateTotalReadingsOfASmartMeter() {
+        return totalReadingsService.calculateTotalReadingsOfASmartMeter();
     }
 
 //    @GetMapping("/calculate-readings/{smartMeterId}")
