@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
 import switch_energy_system.dto.SmartMeterReadingResponse;
 import switch_energy_system.pojo.TotalReadings;
+import switch_energy_system.repository.ProviderRepository;
 import switch_energy_system.repository.TotalReadingsRepository;
 
 import java.util.List;
@@ -17,6 +18,10 @@ public class TotalReadingsService {
 
     @Autowired
     TotalReadingsRepository totalReadingsRepository;
+
+    @Autowired
+    ProviderRepository providerRepository;
+
     private static final Logger log = LoggerFactory.getLogger(TotalReadingsService.class);
 
     public TotalReadings getAllReadingsBySmartMeterId(String smartMeterId) {
@@ -31,6 +36,14 @@ public class TotalReadingsService {
 
     public List<SmartMeterReadingResponse> calculateTotalReadingsOfASmartMeter() {
         return totalReadingsRepository.calculateTotalReadingsOfASmartMeter();
+    }
+
+    public void updateTotalAmountForSmartMeter(String smartMeterId, String providerName) {
+        double ratePerWatt = providerRepository.getProviderByProviderName(providerName).getRatePerWatt();
+        int totalReading = calculateTotalReadingsOfASmartMeter().stream()
+                .filter(readings -> readings.getId().equals(smartMeterId)).toList().get(0).getTotal();
+        double amount = totalReading * ratePerWatt;
+        totalReadingsRepository.updateTotalAmountForSmartMeter(smartMeterId, amount);
     }
 
 //    public List<TotalReadings> calculateTotalReadingsOfASmartMeter(String smartMeterId) {

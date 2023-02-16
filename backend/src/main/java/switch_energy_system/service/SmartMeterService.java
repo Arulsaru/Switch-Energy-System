@@ -24,6 +24,9 @@ public class SmartMeterService {
     @Autowired
     ProviderRepository providerService;
 
+    @Autowired
+    TotalReadingsService totalReadingsService;
+
     public void createSmartMeter(String userName, String providerName) {
         SmartMeter smartMeter = new SmartMeter(userName);
         smartMeter.setProviderName(providerName);
@@ -37,6 +40,7 @@ public class SmartMeterService {
     }
 
     public void switchProviderForSingleSmartMeter(String smartMeterId, String providerName) {
+        totalReadingsService.updateTotalAmountForSmartMeter(smartMeterId, providerName);
         smartMeterRepository.switchProviderForSingleSmartMeter(smartMeterId, providerName);
     }
 

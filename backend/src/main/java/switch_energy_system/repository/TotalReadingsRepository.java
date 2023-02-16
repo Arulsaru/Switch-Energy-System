@@ -46,7 +46,6 @@ public class TotalReadingsRepository implements QueryImpl {
         Aggregation aggregation = Aggregation.newAggregation(unwindOperation, matchOperation, group);
 
         AggregationResults<SmartMeterReadingResponse> result = mongoTemplate.aggregate(aggregation, TotalReadings.class, SmartMeterReadingResponse.class);
-        System.out.println(result.getMappedResults());
         return result.getMappedResults();
     }
 
@@ -55,5 +54,10 @@ public class TotalReadingsRepository implements QueryImpl {
         mongoTemplate.updateMulti(Query.query(Criteria.where("isEnabled").is(true)),
                 new Update().push("electricityReadings", smartMeterReading),
                 TotalReadings.class);
+    }
+
+    public void updateTotalAmountForSmartMeter(String smartMeterId, Double providerName) {
+//        mongoTemplate.findAndModify(getQueryForSmartMeterId(smartMeterId),
+//                new Update());
     }
 }

@@ -22,7 +22,7 @@ public class ProviderRepository implements QueryImpl {
         mongoTemplate.save(provider);
     }
 
-    public Provider getProviderByName(String providerName) {
+    public Provider getProviderByProviderName(String providerName) {
         return mongoTemplate.findOne(getQueryForProviderName(providerName), Provider.class);
     }
 

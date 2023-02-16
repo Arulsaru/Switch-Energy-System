@@ -19,6 +19,10 @@ public class ProviderService {
         providerRepository.createProvider(provider);
     }
 
+    public Provider getProviderByProviderName(String providerName) {
+        return providerRepository.getProviderByProviderName(providerName);
+    }
+
     public void enableProvider(String providerName) {
         providerRepository.enableOrDisableProvider(providerName, true);
     }

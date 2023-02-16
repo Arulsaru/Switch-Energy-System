@@ -44,6 +44,4 @@ public class SmartMeterController {
     public List<SmartMeter> getAllApprovedSmartMeterByUserName(@PathVariable String userName) {
         return smartMeterService.getAllApprovedSmartMeterByUserName(userName);
     }
-
-
 }
