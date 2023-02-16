@@ -10,6 +10,7 @@ import { CreateSmartMeterDialogComponent } from '../create-smart-meter-dialog/cr
   templateUrl: './user-smart-meter.component.html',
   styleUrls: ['./user-smart-meter.component.css'],
 })
+
 export class UserSmartMeterComponent {
 
   smartMeters: smartMeterType[] = [];
@@ -27,9 +28,8 @@ export class UserSmartMeterComponent {
   ) {}
 
   ngOnInit() {
-    this.smartMeterService.getAllApprovedSmartMeterByUserName("Arulmozhi").subscribe((res) => {
-      this.smartMeters = res;
-      console.log(this.smartMeters);
+    this.smartMeterService.getAllApprovedSmartMeterByUserName("Arulmozhi").subscribe({
+      next: (res) => this.smartMeters = res
     })
   }
 

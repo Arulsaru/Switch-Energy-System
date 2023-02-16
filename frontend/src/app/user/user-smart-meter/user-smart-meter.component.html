@@ -17,8 +17,8 @@
         </div> --> <br>
         <p><b>PROVIDER NAME :</b>&emsp;{{smartMeter.providerName}}</p>
         <p><b>STATUS :</b>&emsp;{{smartMeter.smartMeterStatus}}</p>
-        <p><b>CREATED TIME (in epoch) :</b>&emsp;{{smartMeter.epochTime}}</p>
-        <p><b>CREATED DATE AND TIME :</b>&emsp;{{smartMeter.date}}</p> <br>
+        <p><b>READINGS: </b>&emsp;{{smartMeter.readings}}</p>
+        <p><b>AMOUNT TO BE PAI: </b>&emsp;{{smartMeter.readings}}</p>
         <div class="readings-button">
             <span><i>View Readings &emsp;</i></span>
             <button color="none" mat-mini-fab (click)="redirectToViewReadingsPage(smartMeter.smartMeterId)"><mat-icon>keyboard_arrow_right</mat-icon></button>
