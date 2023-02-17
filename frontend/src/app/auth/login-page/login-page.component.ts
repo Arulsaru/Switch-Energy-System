@@ -22,14 +22,15 @@ export class LoginPageComponent {
   })
 
   login(): void {
-    console.log("Arul")
     let token: string = '';
+    console.log(this.loginForm.value);
     this.userService.generateToken(this.loginForm.value).subscribe({
       next: (response) => { 
+        console.log(response);
         token = JSON.stringify(response);
         token = token.slice(13, token.length - 2);
         console.log(token);
-        sessionStorage.setItem("token", token);
+        sessionStorage.setItem('token', token);
       }
     })
   }

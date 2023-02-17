@@ -12,11 +12,11 @@ export class UserService {
     constructor(private http: HttpClient) {}
 
     createUser(user: Object): Observable<Object> {
-        return this.http.post(`${baseURL}user`, user);
+        return this.http.post(`${baseURL}user/signup`, user);
     }
 
     generateToken(user: Object): Observable<Object> {
-        return this.http.post(`${baseURL}user/authenticate`, user);
+        return this.http.post(`${baseURL}user/login-get-token`, user);
     }
 
     getUserByName(userName: String): Observable<userType> {

@@ -53,7 +53,7 @@ export class SignupPageComponent {
     return this.signUpForm.get('phoneNumber')!;
   }
 
-  print(): void {
+  createUser(): void {
     console.log(this.signUpForm.value);
     this.service.createUser(this.signUpForm.value).subscribe({
       error: () => {
