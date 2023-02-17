@@ -31,7 +31,7 @@ public class UserController {
     @Autowired
     SmartMeterService smartMeterService;
 
-    @PostMapping  // user
+    @PostMapping("/signup")  // user
     public void createUser(@RequestBody User user) throws Exception {
         userService.createUser(user);
         smartMeterService.createSmartMeter(user.getUserName(), "ProviderOne"); // default provider inga kudupee
@@ -42,7 +42,7 @@ public class UserController {
         return userService.getUserByName(userName);
     }
 
-    @PostMapping("/authenticate")
+    @PostMapping("/login-get-token")
     public JwtResponse authenticateAndGetToken(@RequestBody LoginRequest loginRequest) {
         System.out.println("Inside");
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword()));

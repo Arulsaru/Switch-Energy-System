@@ -36,7 +36,7 @@ public class SecurityConfig {
         return httpSecurity.cors().and().csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers( "/user" ,"/user/authenticate", "/swagger-ui/**","/swagger-ui.html/**", "/v2/api-docs")
+                .requestMatchers( "/user/signup" ,"/user/login-get-token", "/swagger-ui/**","/swagger-ui.html/**", "/v2/api-docs")
                 .permitAll()
                 .and()
                 .authorizeHttpRequests()
