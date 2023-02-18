@@ -6,6 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+import switch_energy_system.constant.Constant;
 import switch_energy_system.dto.JwtResponse;
 import switch_energy_system.dto.LoginRequest;
 import switch_energy_system.pojo.SmartMeter;
@@ -34,7 +35,7 @@ public class UserController {
     @PostMapping("/signup")  // user
     public void createUser(@RequestBody User user) throws Exception {
         userService.createUser(user);
-        smartMeterService.createSmartMeter(user.getUserName(), "ProviderOne"); // default provider inga kudupee
+        smartMeterService.createSmartMeter(user.getUserName(), Constant.defaultProviderName); // default provider inga kudupee
     }
 
     @GetMapping("/{userName}")
