@@ -1,7 +1,11 @@
 #tneb-logo {
     width: 100px;
     display: block;
-    vertical-align: text-top;
+    /* vertical-align: text-top; */
     margin-right: auto;
     margin-left: auto;
+}
+
+.heading { 
+    font-size: 25px !important;
 }

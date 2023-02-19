@@ -11,9 +11,5 @@ import { SmartMeterService } from 'src/app/service/smart-meter.service';
 export class ToolbarComponent {
   userName: String = 'Arulsaru';
   selectedProvider: String = '';
-  constructor(private router: Router) {}
-
-  redirectToSmartMeterPage(): void {
-    this.router.navigate(['/admin/smart-meter']);
-  }
+  constructor() {}
 }

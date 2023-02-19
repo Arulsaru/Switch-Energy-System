@@ -3,4 +3,5 @@ export interface userType {
     password: String,
     phoneNumber: Number,
     email: String,
+    role: String
 }

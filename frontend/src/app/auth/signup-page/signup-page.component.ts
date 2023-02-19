@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from '../../service/user.service';
 
 @Component({
@@ -8,10 +9,12 @@ import { UserService } from '../../service/user.service';
   styleUrls: ['./signup-page.component.css'],
 })
 export class SignupPageComponent {
+
   showPassword: boolean = false;
   showPasswordForReEnterPasswordField: boolean = false;
   isUserNameAlreadyAvailable: boolean = false;
-  constructor(private formBuilder: FormBuilder, private service: UserService) {}
+
+  constructor(private formBuilder: FormBuilder, private service: UserService, private router: Router) {}
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
@@ -27,7 +30,7 @@ export class SignupPageComponent {
       '',
       [Validators.required, Validators.pattern(/[A-Za-z]/)],
     ],
-    password: ['', [Validators.required]],
+    password: ['Arulsaru', [Validators.required]],
     reEnterPassword: ['Arulsaru', [Validators.required]], 
     email: ['saruarul154@gmail.com', [Validators.required]],
     phoneNumber: ['1234567890', Validators.required],
@@ -54,14 +57,16 @@ export class SignupPageComponent {
   }
 
   createUser(): void {
-    console.log(this.signUpForm.value);
     this.service.createUser(this.signUpForm.value).subscribe({
+      next: (response) => {
+        this.router.navigate(['/auth/login']);
+      },
       error: () => {
         this.isUserNameAlreadyAvailable = true;
         setTimeout(() => {
-        this.isUserNameAlreadyAvailable = false;
-        }, 3000);
+          this.isUserNameAlreadyAvailable = false;
+        }, 3000); 
       }
-    });
+    }); 
   }
 }

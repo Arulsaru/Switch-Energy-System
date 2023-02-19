@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { smartMeterReading, smartMeterType } from 'src/app/interface/smart-meter';
 import { SmartMeterService } from 'src/app/service/smart-meter.service';
+import { UserService } from 'src/app/service/user.service';
 import { CreateSmartMeterDialogComponent } from '../create-smart-meter-dialog/create-smart-meter-dialog.component';
 
 @Component({
@@ -23,11 +23,12 @@ export class UserSmartMeterComponent {
 
   constructor(
     private smartMeterService: SmartMeterService,
+    private userService: UserService,
     public dialog: MatDialog
   ) {}
 
   ngOnInit() {
-    this.getAllSmartMeter("Arulmozhi");
+    this.getAllSmartMeter(this.userService.userName);
   }
 
   getAllSmartMeter(userName: String): void {

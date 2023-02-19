@@ -7,10 +7,10 @@ import { Observable } from "rxjs";
 })
 
 export class TokenInterceptorService implements HttpInterceptor {
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(req: HttpRequest<URL>, next: HttpHandler): Observable<HttpEvent<any>> {
         console.log(req.url);
-
-        let jwtToken: HttpRequest<any>;
+        
+        let jwtToken: HttpRequest<URL>;
 
         if(req.url === 'http://localhost:8080/user/login-get-token' || req.url === 'http://localhost:8080/user/signup') {
             jwtToken = req.clone({

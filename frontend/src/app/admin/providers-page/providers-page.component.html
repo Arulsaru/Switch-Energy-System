@@ -34,3 +34,6 @@
         <p class="mb-0">Try creating another provider or enable another provider and disable it</p>
     </div>
 </div>
+<div class="alert alert-danger" *ngIf="createProviderCancelButtonClicked" role="alert" #alert>
+    This user name is already in user
+</div>

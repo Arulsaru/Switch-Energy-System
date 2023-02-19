@@ -46,3 +46,10 @@
     text-decoration: none;
     margin-left: 150px;
 }
+
+.alert {
+    width: 300px;
+    position: absolute;
+    top: 530px;
+    left: 920px;
+}

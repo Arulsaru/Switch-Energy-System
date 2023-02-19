@@ -47,6 +47,6 @@
         </p>
     </div>
 </div>
-<div class="alert alert-danger" *ngIf="isUserNameAlreadyAvailable" role="alert">
-    This user name is already in user
+<div class="alert alert-danger" *ngIf="isUserNameAlreadyAvailable" role="alert" #alert>
+    This username is <b>already used</b>. Try entering another username
 </div>

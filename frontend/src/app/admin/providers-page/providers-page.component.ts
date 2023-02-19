@@ -21,6 +21,7 @@ export class ProvidersPageComponent implements OnInit {
     ratePerWatt: 0,
   };
   isLastProviderEnabled: boolean = false;
+  createProviderCancelButtonClicked: boolean = true;
 
   constructor(private service: ProviderService, public dialog: MatDialog) {}
 
@@ -46,9 +47,17 @@ export class ProvidersPageComponent implements OnInit {
       next: (response) => {
         this.newProvider = response;
         this.service.createProviders(this.newProvider).subscribe({
-          next: () => this.getAllProviders()
+          next: () => this.getAllProviders(),
+          error: () => {
+            console.log("asfd");
+            this.createProviderCancelButtonClicked = true;
+            window.setTimeout(() => {
+              this.createProviderCancelButtonClicked = false;
+            }, 4000);
+          }
         })
-      }
+      },
+      
     });
   }
 

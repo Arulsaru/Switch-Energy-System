@@ -27,4 +27,6 @@
         </form>
     </div>
 </div>
-<button mat-mini-fab><mat-icon>home</mat-icon></button>
+<div class="alert alert-danger" *ngIf="isUserNameNotAvailable" role="alert">
+    <b>User not found</b>
+</div>
