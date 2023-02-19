@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { createProviderType } from '../../interface/provider';
-import { providerType } from '../../interface/provider';
-import { ProviderService } from '../../service/provider.service';
+import { createProviderType } from '../../shared/interface/provider';
+import { providerType } from '../../shared/interface/provider';
+import { ProviderService } from '../../shared/service/provider.service';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateProviderDialogComponent } from '../create-provider-dialog/create-provider-dialog.component';

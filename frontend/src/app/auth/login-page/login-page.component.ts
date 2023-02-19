@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/service/user.service';
+import { UserService } from 'src/app/shared/service/user.service';
 
 @Component({
   selector: 'app-login-page',
@@ -58,7 +58,11 @@ export class LoginPageComponent {
   }
 
   naviagetePageWithRespectToRoles(role: String) {
-    this.router.navigate(['/user']);
+    if(role === 'ADMIN') {
+      this.router.navigate(['/admin']);
+    } else {
+      this.router.navigate(['/user']);
+    }
   }
   
  }

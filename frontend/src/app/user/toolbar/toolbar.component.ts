@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { SmartMeterService } from 'src/app/service/smart-meter.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,7 +6,9 @@ import { SmartMeterService } from 'src/app/service/smart-meter.service';
   styleUrls: ['./toolbar.component.css'],
 })
 export class ToolbarComponent {
-  userName: String = 'Arulsaru';
+  userName: string | null = sessionStorage.getItem('name');
+  name = this.userName?.slice(1, this.userName.length - 1);
+
   selectedProvider: String = '';
   constructor() {}
 }

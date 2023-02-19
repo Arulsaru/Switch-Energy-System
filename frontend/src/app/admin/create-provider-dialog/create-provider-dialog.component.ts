@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { ProvidersPageComponent } from '../providers-page/providers-page.component';
-import { createProviderType } from 'src/app/interface/provider';
+import { createProviderType } from 'src/app/shared/interface/provider';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 

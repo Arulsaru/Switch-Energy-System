@@ -12,9 +12,10 @@ export class RoleGuard implements CanActivate {
 
     canActivate(): boolean {
         let role = sessionStorage.getItem('role');
-        if (role === 'ADMIN') {
+        console.log(role);
+        if (role === '"ADMIN"') {
             return true;
-        }
+        } 
         alert('you dont have admin rights');    
         this.route.navigate(['/auth/login']);
         return false;

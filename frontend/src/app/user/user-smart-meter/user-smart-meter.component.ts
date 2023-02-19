@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { smartMeterReading, smartMeterType } from 'src/app/interface/smart-meter';
-import { SmartMeterService } from 'src/app/service/smart-meter.service';
-import { UserService } from 'src/app/service/user.service';
+import { smartMeterReading, smartMeterType } from 'src/app/shared/interface/smart-meter';
+import { SmartMeterService } from 'src/app/shared/service/smart-meter.service';
+import { UserService } from 'src/app/shared/service/user.service';
 import { CreateSmartMeterDialogComponent } from '../create-smart-meter-dialog/create-smart-meter-dialog.component';
 
 @Component({
@@ -20,6 +20,7 @@ export class UserSmartMeterComponent {
     dateAndTime: '',
     epochTime: 0
   }
+  userName: string | null = '';
 
   constructor(
     private smartMeterService: SmartMeterService,
@@ -28,10 +29,13 @@ export class UserSmartMeterComponent {
   ) {}
 
   ngOnInit() {
-    this.getAllSmartMeter(this.userService.userName);
+    this.userName = sessionStorage.getItem('name');
+    this.getAllSmartMeter(JSON.stringify(this.userName)); // string object ah maathii slice pandree
+    // this.getAllSmartMeter();
   }
 
   getAllSmartMeter(userName: String): void {
+    userName = userName.slice(3, userName.length - 3); // to remove double quotes
     this.smartMeterService.getAllApprovedSmartMeterByUserName(userName).subscribe({
       next: (res) => this.smartMeters = res
     })
@@ -69,10 +73,11 @@ export class UserSmartMeterComponent {
         this.smartMeterService
           .switchProvider(smartMeterId, this.selectedProvider)
           .subscribe({
-            next: () => console.log("smart meter created")
+            next: () => console.log("smart meter switched"),
+            error: () => {}
           })
       }
     });
-    this.getAllSmartMeter("Arulmozhi"); 
+    this.getAllSmartMeter(JSON.stringify(this.userName)); 
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { providerType } from 'src/app/interface/provider';
-import { ProviderService } from 'src/app/service/provider.service';
+import { providerType } from 'src/app/shared/interface/provider';
+import { ProviderService } from 'src/app/shared/service/provider.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UserSmartMeterComponent } from '../user-smart-meter/user-smart-meter.component';
 import { FormControl, Validators } from '@angular/forms';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { smartMeterType } from '../../interface/smart-meter';
-import { SmartMeterService } from '../../service/smart-meter.service';
+import { smartMeterType } from '../../shared/interface/smart-meter';
+import { SmartMeterService } from '../../shared/service/smart-meter.service';
 
 @Component({
   selector: 'app-smart-meter',

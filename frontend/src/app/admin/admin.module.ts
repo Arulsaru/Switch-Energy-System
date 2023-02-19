@@ -7,7 +7,7 @@ import { AdminSmartMeterComponent } from './admin-smart-meter/admin-smart-meter.
 import { CreateProviderDialogComponent } from './create-provider-dialog/create-provider-dialog.component';
 import { ProvidersPageComponent } from './providers-page/providers-page.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { MaterialModule } from 'src/material/material.module';
+import { MaterialModule } from 'src/app/shared/material/material.module';
 
 @NgModule({
   declarations: [

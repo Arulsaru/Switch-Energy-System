@@ -17,4 +17,9 @@ export class ToolbarComponent {
   redirectToProvidersPage(): void {
     this.router.navigate(['/admin/provider']);
   }
+
+  logout(): void {
+    sessionStorage.clear();
+    this.router.navigate(['/auth']);
+  }
 }

@@ -13,5 +13,5 @@
 <mat-menu #userMenu="matMenu" class="mat-menu mt-3" xPosition="before">
   <button mat-menu-item (click)="redirectToSmartMeterPage()">Smart Meters</button>
   <button mat-menu-item (click)="redirectToProvidersPage()">Providers</button>
-  <button mat-menu-item><i class="fa fa-sign-out"></i>Logout</button>
+  <button mat-menu-item (click)="logout()"><i class="fa fa-sign-out"></i>Logout</button>
 </mat-menu>
