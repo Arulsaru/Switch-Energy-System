@@ -5,6 +5,7 @@ import { ProviderService } from '../../shared/service/provider.service';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateProviderDialogComponent } from '../create-provider-dialog/create-provider-dialog.component';
+import { pageNumber, pageSize } from 'src/app/shared/constant/constant-variables';
 
 @Component({
   selector: 'app-providers-page',
@@ -14,6 +15,8 @@ import { CreateProviderDialogComponent } from '../create-provider-dialog/create-
 
 export class ProvidersPageComponent implements OnInit {
   providers: providerType[] = [];
+  page: number = pageNumber;
+  count: number = pageSize;
 
   newProviderName: String = '';
   newProviderRatePerWatt: Number = 0;
@@ -31,7 +34,7 @@ export class ProvidersPageComponent implements OnInit {
   }
 
   getAllProviders(): void {
-    this.service.getAllProviders().subscribe({
+    this.service.getAllProviders(this.page, this.count).subscribe({
       next: (response) => {
         this.providers = response;
       }

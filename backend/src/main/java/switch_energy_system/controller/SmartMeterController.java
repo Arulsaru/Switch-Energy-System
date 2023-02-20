@@ -26,8 +26,8 @@ public class SmartMeterController {
     }
 
     @GetMapping
-    public List<SmartMeter> getAllPendingSmartMeter() {
-        return smartMeterService.getAllPendingSmartMeter();
+    public List<SmartMeter> getAllPendingSmartMeter(@RequestParam long pageNumber, @RequestParam long pageSize) {
+        return smartMeterService.getAllPendingSmartMeter(pageNumber, pageSize);
     }
 
     @PutMapping("/{smartMeterId}/switch-providers/{providerName}") // admin

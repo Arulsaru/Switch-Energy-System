@@ -36,8 +36,8 @@ public class ProviderService {
         smartMeterService.switchProvidersForAllSmartMeters(providerName);
     }
 
-    public List<Provider> getAllProviders() {
-        return providerRepository.getAllProviders();
+    public List<Provider> getAllProviders(long pageNumber, long pageSize) {
+        return providerRepository.getAllProviders(pageNumber, pageSize);
     }
 
     public void addSmartMeterToTheProviderList(String smartMeterId, String providerName) {

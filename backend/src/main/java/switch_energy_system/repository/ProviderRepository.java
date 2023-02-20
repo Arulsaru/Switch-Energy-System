@@ -3,6 +3,7 @@ package switch_energy_system.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 import switch_energy_system.interfacee.QueryImpl;
@@ -36,6 +37,10 @@ public class ProviderRepository implements QueryImpl {
 
     public List<Provider> getAllProviders() {
         return mongoTemplate.findAll(Provider.class);
+    }
+
+    public List<Provider> getAllProviders(long pageNumber, long pageSize) {
+        return mongoTemplate.find(new Query().skip(pageNumber * pageSize).limit((int) pageSize), Provider.class);
     }
 
     public void addSmartMeterToTheProviderList(String smartMeterId, String providerName) {

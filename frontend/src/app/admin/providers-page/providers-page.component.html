@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let provider of providers; index as idx">
+            <tr *ngFor="let provider of providers | paginate: {itemsPerPage: count, currentPage: page}; index as idx">
                 <th scope="row">{{idx + 1}}</th>
                 <td>{{provider.providerName}}</td>
                 <td>{{provider.ratePerWatt}}</td>
@@ -27,6 +27,9 @@
             </tr>
         </tbody>
     </table> <br>
+    <div class="pagination">
+        <pagination-controls (pageChange)="page=$event"></pagination-controls>
+    </div>
     <div class="alert alert-danger mt-3" *ngIf="isLastProviderEnabled" role="alert">
         <p class="h5"><b>Can't disable provider</b></p>
         <p>This is the only enabled provider available.</p>

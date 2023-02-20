@@ -33,7 +33,7 @@ public class TotalReadingsService {
 
     @Scheduled(cron = "*/10 * * * * *")
     public void calculateAndStoreReading() {
-        if(userRepository.getAllUser().toArray().length > 0) { // 0th user will be admin
+        if(userRepository.getAllUser().toArray().length > 1) { // 0th user will be admin
             totalReadingsRepository.calculateAndStoreReading();
             log.info("reading stored");
         }

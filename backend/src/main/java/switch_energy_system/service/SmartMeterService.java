@@ -2,6 +2,7 @@ package switch_energy_system.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import switch_energy_system.constant.Constant;
 import switch_energy_system.pojo.Provider;
 import switch_energy_system.pojo.SmartMeter;
 import switch_energy_system.pojo.SmartMeterReading;
@@ -70,10 +71,10 @@ public class SmartMeterService {
         }
     }
 
-    public List<SmartMeter> getAllPendingSmartMeter() {
+    public List<SmartMeter> getAllPendingSmartMeter(long pageNumber, long pageSize) {
         return smartMeterRepository.getAllPendingSmartMeter()
                 .stream().filter(smartMeter -> smartMeter.getSmartMeterStatus().equals("PENDING") && smartMeter.isEnabled())
-                .collect(Collectors.toList());
+                .toList().stream().skip(pageNumber).limit(pageSize).toList();
     }
 
     public List<SmartMeter> getAllApprovedSmartMeterByUserName(String userName) {

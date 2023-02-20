@@ -31,8 +31,8 @@ public class ProviderController {
     }
 
     @GetMapping("/get-all-providers") // admin
-    public List<Provider> getAllProviders() {
-        return providerService.getAllProviders();
+    public List<Provider> getAllProviders(@RequestParam long pageNumber, @RequestParam long pageSize) {
+        return providerService.getAllProviders(pageNumber, pageSize);
     }
 
     @GetMapping("/get-all-enabled-providers")

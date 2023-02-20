@@ -11,8 +11,8 @@ import { userType } from '../interface/user';
 export class SmartMeterService {
   constructor(private http: HttpClient) {}
 
-  getPendingSmartMeters(): Observable<smartMeterType[]> {
-    return this.http.get<smartMeterType[]>(`${baseURL}smartmeter`);
+  getPendingSmartMeters(page: number, count: number): Observable<smartMeterType[]> {
+    return this.http.get<smartMeterType[]>(`${baseURL}smartmeter?pageNumber=${page}&pageSize=${count}`);
   }
 
   approveOrRejectSmartMeter(smartMeterId: String, smartMeterStatus: String, providerName: String

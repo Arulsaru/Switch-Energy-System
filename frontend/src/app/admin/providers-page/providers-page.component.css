@@ -37,3 +37,17 @@
     top: 550px;
     left: 250px;
 }
+
+.pagination {
+    position: relative;
+    top: 20px;
+    justify-content: center;
+    color: black;
+}
+
+.ngx-pagination .current {
+    padding: 0.1875rem 0.625rem;
+    background: #3F51B5 !important;
+    color: black;
+    cursor: default;
+}

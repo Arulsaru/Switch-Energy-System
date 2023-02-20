@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { pageNumber, pageSize } from 'src/app/shared/constant/constant-variables';
 import { smartMeterType } from '../../shared/interface/smart-meter';
 import { SmartMeterService } from '../../shared/service/smart-meter.service';
 
@@ -10,6 +11,8 @@ import { SmartMeterService } from '../../shared/service/smart-meter.service';
 
 export class AdminSmartMeterComponent implements OnInit {
   smartMeterList: smartMeterType[] = [];
+  page: number = pageNumber;
+  count: number = pageSize;
 
   constructor(private service: SmartMeterService) {}
 
@@ -18,7 +21,7 @@ export class AdminSmartMeterComponent implements OnInit {
   }
 
   getSmartMeterList(): void {
-    this.service.getPendingSmartMeters().subscribe({
+    this.service.getPendingSmartMeters(this.page, this.count).subscribe({
       next: (response: smartMeterType[]) => this.smartMeterList = response
     });
   }

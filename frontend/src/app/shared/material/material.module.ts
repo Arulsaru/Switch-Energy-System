@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const materialComponents = [
   MatIconModule,
@@ -26,11 +27,12 @@ const materialComponents = [
   MatCardModule,
   MatSelectModule,
   MatOptionModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  NgxPaginationModule
 ];
 
 @NgModule({
   imports: [materialComponents],
   exports: [materialComponents],
 })
-export class MaterialModule {}
+export class MaterialModule { }

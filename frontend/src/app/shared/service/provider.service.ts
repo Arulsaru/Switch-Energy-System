@@ -12,8 +12,8 @@ import { baseURL } from '../constant/constant-variables';
 export class ProviderService {
     constructor(private http: HttpClient) {}
 
-    getAllProviders(): Observable<providerType[]> {
-        return this.http.get<providerType[]>(`${baseURL}provider/get-all-providers`);
+    getAllProviders(page: number, count: number): Observable<providerType[]> {
+        return this.http.get<providerType[]>(`${baseURL}provider/get-all-providers?pageNumber=${page}&pageSize=${count}`);
     }
 
     getAllEnabledProviders(): Observable<providerType[]> {

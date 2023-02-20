@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let smartMeter of smartMeterList; index as idx">
+            <tr *ngFor="let smartMeter of smartMeterList | paginate: {itemsPerPage: count, currentPage: page}; index as idx">
                 <th scope="row">{{idx + 1}}</th>
                 <td>{{smartMeter.smartMeterId}}</td>
                 <td>{{smartMeter.userName}}</td>
@@ -23,4 +23,7 @@
             </tr>
         </tbody>
     </table>
+    <div class="pagination">
+        <pagination-controls (pageChange)="page=$event"></pagination-controls>
+    </div>
 </div>
