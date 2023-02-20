@@ -11,6 +11,7 @@ import switch_energy_system.pojo.TotalReadings;
 import switch_energy_system.repository.ProviderRepository;
 import switch_energy_system.repository.SmartMeterRepository;
 import switch_energy_system.repository.TotalReadingsRepository;
+import switch_energy_system.repository.UserRepository;
 
 import java.util.List;
 
@@ -22,10 +23,7 @@ public class TotalReadingsService {
     TotalReadingsRepository totalReadingsRepository;
 
     @Autowired
-    ProviderRepository providerRepository;
-
-    @Autowired
-    SmartMeterRepository smartMeterRepository;
+    UserRepository userRepository;
 
     private static final Logger log = LoggerFactory.getLogger(TotalReadingsService.class);
 
@@ -35,8 +33,10 @@ public class TotalReadingsService {
 
     @Scheduled(cron = "*/10 * * * * *")
     public void calculateAndStoreReading() {
-        totalReadingsRepository.calculateAndStoreReading();
-        log.info("reading stored");
+        if(userRepository.getAllUser().toArray().length > 0) { // 0th user will be admin
+            totalReadingsRepository.calculateAndStoreReading();
+            log.info("reading stored");
+        }
     }
 
     public List<SmartMeterReadingResponse> calculateTotalReadingsOfASmartMeter() {

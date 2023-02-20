@@ -23,4 +23,8 @@ public class UserRepository implements QueryImpl {
     public User getUserByName(String userName) {
         return mongoTemplate.findOne(getQueryForUserName(userName), User.class);
     }
+
+    public List<User> getAllUser() {
+        return mongoTemplate.findAll(User.class);
+    }
 }

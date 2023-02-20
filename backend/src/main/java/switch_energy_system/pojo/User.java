@@ -21,6 +21,6 @@ public class User {
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.role = "USER";
+        this.role = "ADMIN";
     }
 }
