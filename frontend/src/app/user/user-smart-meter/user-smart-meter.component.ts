@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBarRef } from '@angular/material/snack-bar';
 import { smartMeterReading, smartMeterType } from 'src/app/shared/interface/smart-meter';
 import { SmartMeterService } from 'src/app/shared/service/smart-meter.service';
 import { UserService } from 'src/app/shared/service/user.service';
@@ -21,12 +22,13 @@ export class UserSmartMeterComponent {
     epochTime: 0
   }
   userName: string | null = '';
+  isSmartMeterCreateRequestSent: boolean = false;
 
   constructor(
     private smartMeterService: SmartMeterService,
     private userService: UserService,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.userName = sessionStorage.getItem('name');
@@ -54,7 +56,12 @@ export class UserSmartMeterComponent {
         this.smartMeterService
           .createSmartMeter(this.selectedProvider)
           .subscribe({
-            next: () => console.log("smart meter created")
+            next: () => {
+              this.isSmartMeterCreateRequestSent = true;
+              window.setTimeout(() => {
+                this.isSmartMeterCreateRequestSent = false;
+              }, 3000);
+            }
           })
       }
     });
@@ -74,10 +81,10 @@ export class UserSmartMeterComponent {
           .switchProvider(smartMeterId, this.selectedProvider)
           .subscribe({
             next: () => console.log("smart meter switched"),
-            error: () => {}
+            error: () => { }
           })
       }
     });
-    this.getAllSmartMeter(JSON.stringify(this.userName)); 
+    this.getAllSmartMeter(JSON.stringify(this.userName));
   }
 }
