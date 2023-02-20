@@ -29,7 +29,6 @@ public class TotalReadingsRepository implements QueryImpl {
     }
 
     public void pushSmartMeterReadingsIntoTotalReadingList(SmartMeterReading smartMeterReading) {
-        System.out.println("afdfds");
         mongoTemplate.findAndModify(getQueryForSmartMeterId(smartMeterReading.getSmartMeterId()),
                 new Update().push("electricityReadings", smartMeterReading),
                 TotalReadings.class);
@@ -54,10 +53,5 @@ public class TotalReadingsRepository implements QueryImpl {
         mongoTemplate.updateMulti(Query.query(Criteria.where("isEnabled").is(true)),
                 new Update().push("electricityReadings", smartMeterReading),
                 TotalReadings.class);
-    }
-
-    public void updateTotalAmountForSmartMeter(String smartMeterId, Double providerName) {
-//        mongoTemplate.findAndModify(getQueryForSmartMeterId(smartMeterId),
-//                new Update());
     }
 }

@@ -22,6 +22,7 @@ public class SmartMeterRepository implements QueryImpl {
     }
 
     public void switchProviderForSingleSmartMeter(String smartMeterId, String providerName) {
+        System.out.println(smartMeterId + " " + providerName);
         mongoTemplate.findAndModify(getQueryForSmartMeterId(smartMeterId),
                 new Update().set("providerName", providerName),
                 SmartMeter.class);
@@ -46,6 +47,12 @@ public class SmartMeterRepository implements QueryImpl {
     public List<SmartMeter> getAllApprovedSmartMeterByUserName(String userName) {
         return mongoTemplate.find(
                 getQueryForUserName(userName).addCriteria(Criteria.where("smartMeterStatus").is("APPROVED")),
+                SmartMeter.class);
+    }
+
+    public void updateTotalAmountForSmartMeter(String smartMeterId, Double amount) {
+        mongoTemplate.findAndModify(getQueryForSmartMeterId(smartMeterId),
+                new Update().set("amount", amount),
                 SmartMeter.class);
     }
 }

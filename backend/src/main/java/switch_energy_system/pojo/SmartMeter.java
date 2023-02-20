@@ -21,6 +21,7 @@ public class SmartMeter {
     private String userName;
     private String providerName;
     private String readings;
+    private long amount;
     private String date;
     private long epochTime;
     private String smartMeterStatus;  // pending, approved, rejected

@@ -27,21 +27,31 @@ public class SmartMeterService {
     @Autowired
     TotalReadingsService totalReadingsService;
 
+    @Autowired
+    ProviderRepository providerRepository;
+
     public void createSmartMeter(String userName, String providerName) {
         SmartMeter smartMeter = new SmartMeter(userName);
         smartMeter.setProviderName(providerName);
         smartMeterRepository.createSmartMeter(smartMeter);
 
-        SmartMeterReading smartMeterReading = new SmartMeterReading(0);
+        SmartMeterReading smartMeterReading = new SmartMeterReading(0); // initial readings
         TotalReadings totalReadings = new TotalReadings(smartMeter.getSmartMeterId());
         totalReadingsRepository.createTotalReadingsCollection(totalReadings);
         totalReadingsRepository.pushSmartMeterReadingsIntoTotalReadingList(smartMeterReading);  // initial
-//        smartMeterRepository.createSmartMeterReading(new SmartMeterReading(smartMeter.getSmartMeterId()));
     }
 
     public void switchProviderForSingleSmartMeter(String smartMeterId, String providerName) {
-        totalReadingsService.updateTotalAmountForSmartMeter(smartMeterId, providerName);
         smartMeterRepository.switchProviderForSingleSmartMeter(smartMeterId, providerName);
+        updateTotalAmountForSmartMeter(smartMeterId, providerName);
+    }
+
+    public void updateTotalAmountForSmartMeter(String smartMeterId, String providerName) {
+        double ratePerWatt = providerRepository.getProviderByProviderName(providerName).getRatePerWatt();
+        int totalReading = totalReadingsService.calculateTotalReadingsOfASmartMeter().stream()
+                .filter(readings -> readings.getId().equals(smartMeterId)).toList().get(0).getTotal();
+        double amount = totalReading * ratePerWatt;
+        smartMeterRepository.updateTotalAmountForSmartMeter(smartMeterId, amount);
     }
 
     public void switchProvidersForAllSmartMeters(String oldProviderName) {
@@ -50,6 +60,7 @@ public class SmartMeterService {
                         .filter(Provider::isEnabled)
                         .toList().get(0).getProviderName();
         smartMeterRepository.switchProvidersForAllSmartMeters(oldProviderName, newProviderName);
+        providerRepository.switchSmartMeterListBetweenProviders(oldProviderName, newProviderName);
     }
 
     public void approveOrRejectSmartMeter(String smartMeterId, String status, String providerName) {

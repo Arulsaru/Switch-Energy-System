@@ -44,6 +44,10 @@ public class ProviderRepository implements QueryImpl {
                 Provider.class);
     }
 
+    public List<Provider> getAllSmartMetersFromProviderList(String providerName) {
+        return mongoTemplate.find(getQueryForProviderName(providerName).addCriteria(Criteria.where("providerList")), Provider.class);
+    }
+
     public List<Provider> getAllEnabledProviders() {
         return mongoTemplate.findAll(Provider.class).stream().filter(Provider::isEnabled).collect(Collectors.toList());
     }
@@ -52,5 +56,9 @@ public class ProviderRepository implements QueryImpl {
         mongoTemplate.findAndModify(getQueryForProviderName(providerName),
                 new Update().pull("smartMeterList", null),
                 Provider.class);
+    }
+
+    public void switchSmartMeterListBetweenProviders(String oldProviderName, String newProviderName) {
+        System.out.println(getAllSmartMetersFromProviderList(oldProviderName));
     }
 }
