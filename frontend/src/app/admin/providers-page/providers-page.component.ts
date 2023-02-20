@@ -11,6 +11,7 @@ import { CreateProviderDialogComponent } from '../create-provider-dialog/create-
   templateUrl: './providers-page.component.html',
   styleUrls: ['./providers-page.component.css'],
 })
+
 export class ProvidersPageComponent implements OnInit {
   providers: providerType[] = [];
 
@@ -21,7 +22,7 @@ export class ProvidersPageComponent implements OnInit {
     ratePerWatt: 0,
   };
   isLastProviderEnabled: boolean = false;
-  createProviderCancelButtonClicked: boolean = true;
+  createProviderCancelButtonClicked: boolean = false;
 
   constructor(private service: ProviderService, public dialog: MatDialog) {}
 
@@ -70,7 +71,7 @@ export class ProvidersPageComponent implements OnInit {
     } else if (provider.smartMetersList.length < 5) {
       message = provider.smartMetersList.toString();
     } else {
-      message = `${provider.smartMetersList.splice(0, 5).toString()} and so on..`;
+      message = `${provider.smartMetersList.splice(0, 5).toString()} and ${provider.smartMetersList.length - 5} moree..`;
     }
 
     Swal.fire({
