@@ -44,14 +44,19 @@ public class SmartMeterService {
 
     public void switchProviderForSingleSmartMeter(String smartMeterId, String providerName) {
         smartMeterRepository.switchProviderForSingleSmartMeter(smartMeterId, providerName);
-        updateTotalAmountForSmartMeter(smartMeterId, providerName);
+        updateTotalAmountForSmartMeter(smartMeterId, calculateAmount(smartMeterId, providerName));
     }
 
-    public void updateTotalAmountForSmartMeter(String smartMeterId, String providerName) {
+
+    public double calculateAmount(String smartMeterId, String providerName) {
         double ratePerWatt = providerRepository.getProviderByProviderName(providerName).getRatePerWatt();
         int totalReading = totalReadingsService.calculateTotalReadingsOfASmartMeter().stream()
                 .filter(readings -> readings.getId().equals(smartMeterId)).toList().get(0).getTotal();
         double amount = totalReading * ratePerWatt;
+        return amount;
+    }
+
+    public void updateTotalAmountForSmartMeter(String smartMeterId, double amount) {
         smartMeterRepository.updateTotalAmountForSmartMeter(smartMeterId, amount);
     }
 
