@@ -26,6 +26,11 @@ public class TotalReadingsController {
         return totalReadingsService.calculateTotalReadingsOfASmartMeter();
     }
 
+    @GetMapping("/smart-meter/{smartMeterId}")
+    public long getReadingsOfASmartMeterById(@PathVariable String smartMeterId) {
+        return totalReadingsService.getReadingsOfASmartMeterById(smartMeterId);
+    }
+
 //    @GetMapping("/calculate-readings/{smartMeterId}")
 //    public List<TotalReadings> calculateTotalReadingsOfASmartMeter(@PathVariable String smartMeterId) {
 //        return totalReadingsService.calculateTotalReadingsOfASmartMeter(smartMeterId);

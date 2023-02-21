@@ -54,4 +54,5 @@ public class TotalReadingsRepository implements QueryImpl {
                 new Update().push("electricityReadings", smartMeterReading),
                 TotalReadings.class);
     }
+
 }

@@ -43,6 +43,15 @@ public class TotalReadingsService {
         return totalReadingsRepository.calculateTotalReadingsOfASmartMeter();
     }
 
+    public long getReadingsOfASmartMeterById(String smartMeterId) {
+        return totalReadingsRepository.calculateTotalReadingsOfASmartMeter()
+                .stream()
+                .filter(smartMeters -> smartMeters.getId().equals(smartMeterId))
+                .toList()
+                .get(0)
+                .getTotal();
+    }
+
 //    public List<TotalReadings> calculateTotalReadingsOfASmartMeter(String smartMeterId) {
 //        return totalReadingsRepository.calculateTotalReadingsOfASmartMeter(smartMeterId);
 //    }

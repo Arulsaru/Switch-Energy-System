@@ -52,8 +52,7 @@ public class SmartMeterService {
         double ratePerWatt = providerRepository.getProviderByProviderName(providerName).getRatePerWatt();
         int totalReading = totalReadingsService.calculateTotalReadingsOfASmartMeter().stream()
                 .filter(readings -> readings.getId().equals(smartMeterId)).toList().get(0).getTotal();
-        double amount = totalReading * ratePerWatt;
-        return amount;
+        return totalReading * ratePerWatt;
     }
 
     public void updateTotalAmountForSmartMeter(String smartMeterId, double amount) {

@@ -45,7 +45,7 @@ public class SmartMeterController {
         return smartMeterService.getAllApprovedSmartMeterByUserName(userName);
     }
 
-    @GetMapping("/calculate-amount")
+    @GetMapping("{smartMeterId}/calculate-amount/{providerName}")
     public double calculateAmount(@PathVariable String smartMeterId, @PathVariable String providerName) {
         return smartMeterService.calculateAmount(smartMeterId, providerName);
     }
