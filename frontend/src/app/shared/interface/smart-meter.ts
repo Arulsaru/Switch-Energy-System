@@ -14,3 +14,8 @@ export interface smartMeterReading {
     dateAndTime: String,
     epochTime: Number
 }
+
+export interface totalReadings {
+    smartMeterId: String,
+    total: Number
+}

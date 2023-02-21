@@ -9,6 +9,7 @@ import { userType } from '../interface/user';
   providedIn: 'root',
 })
 export class SmartMeterService {
+
   constructor(private http: HttpClient) {}
 
   getPendingSmartMeters(page: number, count: number): Observable<smartMeterType[]> {
@@ -23,9 +24,10 @@ export class SmartMeterService {
     );
   }
 
-  createSmartMeter(providerName: String) {
+  createSmartMeter(userName: String, providerName: String) {
+    userName = userName.slice(3, userName.length - 3);
     return this.http.post(
-      `${baseURL}smartmeter/Arulmozhi/create/${providerName}`,
+      `${baseURL}smartmeter/${userName}/create/${providerName}`,
       null
     );
   }
@@ -36,5 +38,13 @@ export class SmartMeterService {
 
   switchProvider(smartMeterId: String, providerName: String) {
     return this.http.put(`${baseURL}smartmeter/${smartMeterId}/switch-providers/${providerName}`, null);
+  }
+
+  getCalculatedAmount(smartMeterId: String, providerName: String): Observable<number> {
+    return this.http.get<number>(`${baseURL}smartmeter/${smartMeterId}/calculate-amount/${providerName}`);
+  }
+
+  calculateReadings(smartMeterId: String): Observable<number> {
+    return this.http.get<number>(`${baseURL}readings/smart-meter/${smartMeterId}`)
   }
 }

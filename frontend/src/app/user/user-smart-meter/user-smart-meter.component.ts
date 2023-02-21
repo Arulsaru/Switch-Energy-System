@@ -1,7 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBarRef } from '@angular/material/snack-bar';
-import { smartMeterReading, smartMeterType } from 'src/app/shared/interface/smart-meter';
+import { smartMeterReading, smartMeterType, totalReadings } from 'src/app/shared/interface/smart-meter';
 import { SmartMeterService } from 'src/app/shared/service/smart-meter.service';
 import { UserService } from 'src/app/shared/service/user.service';
 import { CreateSmartMeterDialogComponent } from '../create-smart-meter-dialog/create-smart-meter-dialog.component';
@@ -15,6 +14,8 @@ import { CreateSmartMeterDialogComponent } from '../create-smart-meter-dialog/cr
 export class UserSmartMeterComponent {
 
   smartMeters: smartMeterType[] = [];
+  totalReadings: number = 0;
+  totalAmount: number = 0;
   selectedProvider = '';
   smartMeterReadings: smartMeterReading = {
     smartMeterId: '',
@@ -26,7 +27,6 @@ export class UserSmartMeterComponent {
 
   constructor(
     private smartMeterService: SmartMeterService,
-    private userService: UserService,
     public dialog: MatDialog
   ) { }
 
@@ -41,6 +41,7 @@ export class UserSmartMeterComponent {
     this.smartMeterService.getAllApprovedSmartMeterByUserName(userName).subscribe({
       next: (res) => this.smartMeters = res
     })
+    console.log(this.smartMeters);
   }
 
   createSmartMeter(): void {
@@ -54,7 +55,7 @@ export class UserSmartMeterComponent {
       if (result != null) {
         this.selectedProvider = result;
         this.smartMeterService
-          .createSmartMeter(this.selectedProvider)
+          .createSmartMeter(JSON.stringify(this.userName),this.selectedProvider)
           .subscribe({
             next: () => {
               this.isSmartMeterCreateRequestSent = true;
@@ -86,5 +87,20 @@ export class UserSmartMeterComponent {
       }
     });
     this.getAllSmartMeter(JSON.stringify(this.userName));
+  }
+
+  calculateReadings(smartMeterId: String): void {
+    this.smartMeterService.calculateReadings(smartMeterId).subscribe({
+      next: (res: number) => this.totalReadings = res
+    })
+  }
+
+  calculateAmount(smartMeterId: String, providerName: String): void {
+    this.smartMeterService.getCalculatedAmount(smartMeterId, providerName).subscribe({
+      next: (res: number) => {
+        this.totalAmount = res
+        this.calculateReadings(smartMeterId);
+      }
+    })
   }
 }

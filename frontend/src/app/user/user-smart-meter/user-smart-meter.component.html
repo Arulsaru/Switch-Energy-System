@@ -17,11 +17,11 @@
         </div> --> <br>
         <p><b>PROVIDER NAME :</b>&emsp;{{smartMeter.providerName}}</p>
         <p><b>STATUS :</b>&emsp;{{smartMeter.smartMeterStatus}}</p>
-        <p><b>READINGS: </b>&emsp;{{smartMeter.readings}}</p>
-        <p><b>AMOUNT TO BE PAID: </b>&emsp;{{smartMeter.readings}}</p> <br>
+        <p><b>READINGS: </b>&emsp;{{totalReadings}}</p>
+        <p><b>AMOUNT TO BE PAID: </b>&emsp;{{totalAmount}}</p> <br>
         <button color="none" mat-raised-button id="switch-provider-button"
-            (click)="switchProvider(smartMeter.smartMeterId)">SWITCH
-            PROVIDERS<mat-icon>keyboard_arrow_right</mat-icon></button>
+            (click)="switchProvider(smartMeter.smartMeterId)">Switch Provider<mat-icon>keyboard_arrow_right</mat-icon></button>
+        <button mat-raised-button class="calculate-amount-button" (click)="calculateAmount(smartMeter.smartMeterId, smartMeter.providerName)">Amount</button>
         <!-- <p><b>LATEST READINGS :</b>&emsp;{{smartMeter.readings}}</p> -->
     </mat-card>
 </div>
