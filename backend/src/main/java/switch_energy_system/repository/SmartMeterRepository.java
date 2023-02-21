@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 import switch_energy_system.interfacee.QueryImpl;
 import switch_energy_system.pojo.SmartMeter;
-import switch_energy_system.pojo.SmartMeterReading;
 
 import java.util.List;
 

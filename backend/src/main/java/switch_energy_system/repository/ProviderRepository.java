@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import switch_energy_system.interfacee.QueryImpl;
 import switch_energy_system.pojo.Provider;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

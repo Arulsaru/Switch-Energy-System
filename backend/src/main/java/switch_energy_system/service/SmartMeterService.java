@@ -12,7 +12,6 @@ import switch_energy_system.repository.SmartMeterRepository;
 import switch_energy_system.repository.TotalReadingsRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class SmartMeterService {

@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -27,11 +26,5 @@ public class SmartMeterReading {
         this.dateAndTime = LocalDateTime.now();
         this.epochTimeStamp = Instant.now().toEpochMilli();
         this.readings = readings;
-    }
-
-    public String getCurrentDateAndTimeInGMT() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-        return dateFormat.format(new Date()); // 2023-02-15 06:48
     }
 }

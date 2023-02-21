@@ -17,7 +17,6 @@ import switch_energy_system.service.JwtService;
 import java.io.IOException;
 
 @Component
-
 public class JWTAuthFilter extends OncePerRequestFilter {
 
     @Autowired

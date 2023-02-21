@@ -8,8 +8,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import switch_energy_system.dto.SmartMeterReadingResponse;
 import switch_energy_system.pojo.TotalReadings;
-import switch_energy_system.repository.ProviderRepository;
-import switch_energy_system.repository.SmartMeterRepository;
 import switch_energy_system.repository.TotalReadingsRepository;
 import switch_energy_system.repository.UserRepository;
 
@@ -51,8 +49,4 @@ public class TotalReadingsService {
                 .get(0)
                 .getTotal();
     }
-
-//    public List<TotalReadings> calculateTotalReadingsOfASmartMeter(String smartMeterId) {
-//        return totalReadingsRepository.calculateTotalReadingsOfASmartMeter(smartMeterId);
-//    }
 }

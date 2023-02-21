@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import switch_energy_system.constant.Constant;
 import switch_energy_system.dto.JwtResponse;
 import switch_energy_system.dto.LoginRequest;
-import switch_energy_system.pojo.SmartMeter;
 import switch_energy_system.pojo.User;
 import switch_energy_system.service.JwtService;
 import switch_energy_system.service.SmartMeterService;
