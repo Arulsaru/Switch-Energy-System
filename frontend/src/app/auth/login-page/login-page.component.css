@@ -1,3 +1,9 @@
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+    border-color: red;
+    box-shadow: 0 0 0 0.2rem rgba(255, 112, 112, 0.737);
+}
+
 .main-container {
     display: flex;
 }
@@ -19,6 +25,11 @@
     border-color: white;
 }
 
+button:disabled {
+    cursor: not-allowed !important;
+    pointer-events: all !important;
+}
+
 .form-group,
 .form-check {
     margin-top: 20px;
@@ -32,7 +43,7 @@
 .form-select:focus {
     border-color: black;
     /* border-top: none !important; */
-    box-shadow: none;
+    box-shadow: 0 0 0 0.2rem rgb(162, 162, 162);
 }
 
 #show-password-icon {
@@ -52,4 +63,10 @@
     position: absolute;
     top: 530px;
     left: 920px;
+}
+
+.error {
+    position: relative;
+    top: 5px;
+    color: red;
 }

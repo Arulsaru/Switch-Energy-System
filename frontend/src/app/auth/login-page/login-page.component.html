@@ -7,17 +7,20 @@
             <h2 id="heading">Login to your Account</h2> <br>
             <div class="form-group">
                 <label class="mb-2">&emsp; Username</label>
-                <input type="text" formControlName="userName" name="user-name" class="form-control"
+                <input type="text" formControlName="userName" class="form-control"
                     placeholder="Enter username">
+                <small class="error" *ngIf="userName?.invalid && userName?.touched">username is required</small>
+                <span class="error" *ngIf="isUserNameNotAvailable">user name not found</span>
                 <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
             </div>
             <div class="form-group">
                 <label class="mb-2">&emsp; Password</label>
-                <input type="password" formControlName="password" name="password" matInput
+                <input type="password" formControlName="password" matInput
                     [type]="showPassword ? 'text':'Password'" class="form-control" placeholder="Enter password">
                 <mat-icon id="show-password-icon" matSuffix
                     (click)="togglePasswordVisibility()">{{showPassword?'visibility_off':'visibility'}}
                 </mat-icon>
+                <small class="error" *ngIf="password?.invalid && password?.touched">password is required</small>
                 <a href="/#" id="forgot-password-link" class="link-dark small fw-bold">Forgot Password ?</a>
             </div>
             <button id="login-button" [disabled]="loginForm.invalid" class="btn btn-primary" (click)="login()">LOGIN</button>

@@ -8,15 +8,14 @@
             <div class="form-group mt-4">
                 <label class="mb-2">Username</label>
                 <input type="text" class="form-control" formControlName="userName" placeholder="Enter username">
-                <p class="error" *ngIf="userName?.invalid && userName?.touched">Username is <b>required</b></p>
-                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                <small class="error" *ngIf="userName?.invalid && userName?.touched">Enter the correct <b>username</b></small>
             </div>
             <div class="password-container">
                 <div class="form-group password-right-container">
                     <label class="mb-2">Password</label>
                     <input type="password" [type]="showPassword? 'text':'password'" class="form-control"
                         formControlName="password" placeholder="Enter password">
-                    <p class="error" *ngIf="password?.invalid && password?.touched">Password is <b>required</b></p>
+                    <small class="error" *ngIf="password?.invalid && password?.touched">Enter the correct <b>password</b></small>
                 </div>
                 <mat-icon id="show-password-icon-one" matSuffix
                     (click)="togglePasswordVisibility()">{{showPassword?'visibility_off':'visibility'}}
@@ -33,12 +32,12 @@
             <div class="form-group">
                 <label class="mb-2">Phone Number</label>
                 <input type="text" class="form-control" placeholder="Enter phone number" formControlName="phoneNumber">
-                <p class="error" *ngIf="phoneNumber?.invalid && phoneNumber?.touched">Phone Number is <b>required</b></p>
+                <small class="error" *ngIf="phoneNumber?.invalid && phoneNumber?.touched">Enter the correct <b>phone number</b></small>
             </div>
             <div class="form-group">
                 <label class="mb-2">Email</label>
                 <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
-                <p class="error" *ngIf="email?.invalid && email?.touched">Email is <b>required</b></p>
+                <small class="error" *ngIf="email?.invalid && email?.touched">Enter the correct <b>email</b></small>
             </div>
         </form> <br>
         <button id="signup-button" class="btn btn-primary" [disabled]="signUpForm.invalid" (click)="createUser()">SIGN UP</button>

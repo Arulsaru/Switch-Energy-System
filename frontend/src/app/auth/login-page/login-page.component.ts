@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/service/user.service';
 
@@ -22,6 +22,14 @@ export class LoginPageComponent {
     userName: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   })
+
+  get userName(): AbstractControl {
+    return this.loginForm.get('userName')!;
+  }
+
+  get password(): AbstractControl {
+    return this.loginForm.get('password')!;
+  }
 
   login(): void {
     let token: string = '';

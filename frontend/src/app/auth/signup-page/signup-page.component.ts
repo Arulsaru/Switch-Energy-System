@@ -26,14 +26,11 @@ export class SignupPageComponent {
   }
 
   signUpForm = this.formBuilder.group({
-    userName: [
-      '',
-      [Validators.required, Validators.pattern(/[A-Za-z]/)],
-    ],
-    password: ['Arulsaru', [Validators.required]],
+    userName: ['', [Validators.required, Validators.pattern(/[A-Za-z]/)]],
+    password: ['Arulsaru', [Validators.required, Validators.pattern(/[A-Za-z0-9]{8}[\d]{1}/)]],
     reEnterPassword: ['Arulsaru', [Validators.required]], 
-    email: ['saruarul154@gmail.com', [Validators.required]],
-    phoneNumber: ['1234567890', Validators.required],
+    email: ['saruarul154@gmail.com', [Validators.required, Validators.email]],
+    phoneNumber: ['1234567890', [Validators.required, Validators.pattern(/[0-9]{9}/)]],
   });
 
   get userName(): AbstractControl {

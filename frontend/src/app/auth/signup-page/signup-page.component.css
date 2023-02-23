@@ -33,7 +33,18 @@
 .form-select:focus {
     border-color: black;
     /* border-top: none !important; */
-    box-shadow: none;
+    box-shadow: 0 0 0 0.2rem rgb(162, 162, 162);
+}
+
+input.ng-invalid.ng-touched {
+    color: red;
+    border-color: red;
+    box-shadow: 0 0 0 0.2rem rgba(255, 112, 112, 0.737);
+}
+
+button:disabled {
+    cursor: not-allowed !important;
+    pointer-events: all !important;
 }
 
 #show-password-icon-one,
@@ -52,6 +63,8 @@
 }
 
 .error {
-    margin-top: 10px;
+    position: relative;
+    top: 10px;
+    bottom: 5px;
     color: red;
 }
